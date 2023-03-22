@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FeetController : MonoBehaviour
@@ -8,7 +9,7 @@ public class FeetController : MonoBehaviour
     public Transform abdomenObject;
     public Transform rayHeadObject;
 
-    public Vector2 gazePos;
+    private Vector2 gazePos;
     public float gazeDistance = 2f;
 
     public int numberOfRays = 10;
@@ -18,11 +19,18 @@ public class FeetController : MonoBehaviour
     private List<Vector2> hits;
 
     public int numberOfFeet = 4;
-    public Vector2[] targetPoints;
-    public Vector2[] feetPositions;
+    private Vector2[] targetPoints;
 
-    public float retarget1Threshold = 2.5f;
-    public float retarget2Threshold = 2.5f;
+    private Vector2[] feetPosCurrent;
+    private Vector2[] feetPosFrom;
+    private Vector2?[] feetPosTo;
+
+    private float[] tValues;
+    private AnimationCurve curveEase;
+    public float footVelocity = 0.05f;
+
+    public float retargetThreshold = 2.5f;
+    public float feetTargetRadius = 0.1f;
 
     private float gizmoAngle;
     private bool drawGizmoAngle;
@@ -32,13 +40,22 @@ public class FeetController : MonoBehaviour
         drawGizmoAngle = false;
 
         targetPoints = new Vector2[numberOfFeet];
-        feetPositions = new Vector2[numberOfFeet];
+
+        feetPosCurrent = new Vector2[numberOfFeet];
+        feetPosFrom = new Vector2[numberOfFeet];
+        feetPosTo = new Vector2?[numberOfFeet];
+
+        tValues = new float[numberOfFeet];
+        curveEase = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
         hits = new List<Vector2>();
 
         for (int i=0; i<numberOfFeet; i++)
         {
             targetPoints[i] = new Vector2(0, 100);
-            feetPositions[i] = Vector2.zero;
+            feetPosCurrent[i] = Vector2.zero;
+            feetPosFrom[i] = Vector2.zero;
+            tValues[i] = 0f;
         }
     }
 
@@ -56,6 +73,29 @@ public class FeetController : MonoBehaviour
 
         // update target points if they are far from body
         RetargetTargets();
+
+        // update feet position using spherical interpolation
+        RetargetFeet();
+    }
+
+    private void RetargetFeet()
+    {
+        for (int i=0; i<numberOfFeet; i++) {
+            if (feetPosTo[i] != null)
+            {
+                if (Vector2.Distance(feetPosCurrent[i], (Vector2)feetPosTo[i]) > feetTargetRadius) {
+                    float smoothT = curveEase.Evaluate(tValues[i]);
+                    //feetPosCurrent[i] = Vector2.Lerp(feetPosFrom[i], (Vector2)feetPosTo[i], smoothT);
+                    feetPosCurrent[i] = Vector3.Slerp(feetPosFrom[i], (Vector3)feetPosTo[i], smoothT);
+                    tValues[i] += footVelocity;
+
+                } else
+                {
+                    feetPosFrom[i] = (Vector2)feetPosTo[i];
+                    feetPosTo[i] = null;
+                }
+            }
+        }
     }
 
     private void RetargetTargets()
@@ -63,10 +103,14 @@ public class FeetController : MonoBehaviour
         for (int i=0; i<targetPoints.Length; i++)
         {
             // retarget points if they are further away than allowed threshold (#1)
-            if (hits.Count > 0 && Vector2.Distance(gazePos, targetPoints[i]) > retarget1Threshold)
+            if (hits.Count > 0 && Vector2.Distance(gazePos, targetPoints[i]) > retargetThreshold)
             {
                 int chosenHitIndex = Random.Range(0, hits.Count - 1);
+
+                feetPosFrom[i] = targetPoints[i];
                 targetPoints[i] = hits[chosenHitIndex];
+                feetPosTo[i] = targetPoints[i];
+                tValues[i] = 0;
             }
         }
     }
@@ -138,9 +182,24 @@ public class FeetController : MonoBehaviour
         }
 
         Gizmos.color = Color.gray;
-        foreach (Vector2 targetPoint in targetPoints)
+        if (targetPoints != null)
         {
-            Gizmos.DrawSphere(targetPoint, 0.18f);
+            foreach (Vector2 targetPoint in targetPoints)
+            {
+                Gizmos.DrawSphere(targetPoint, 0.18f);
+            }
+        }
+
+        Gizmos.color = Color.cyan;
+        if (feetPosCurrent != null)
+        {
+            foreach (Vector2? foot in feetPosCurrent)
+            {
+                if (foot != null)
+                {
+                    Gizmos.DrawSphere((Vector3)foot, 0.18f);
+                }
+            }
         }
     }
 }
