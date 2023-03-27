@@ -24,7 +24,7 @@ public class Pickup : MonoBehaviour
           }
 
           SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-          if (stuckOffset.x < spriteRenderer.bounds.size.x)
+          if (Mathf.Abs(stuckOffset.x) < spriteRenderer.bounds.size.x)
           {
               stuckOffset.x = spriteRenderer.bounds.size.x;
           }
