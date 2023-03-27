@@ -162,24 +162,24 @@ public class FeetController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(gazePos, 0.18f);
 
-        Gizmos.color = Color.yellow;
-        if (hits != null)
-        {
-            foreach (Vector2 hit in hits)
-            {
-                Gizmos.DrawLine(rayHeadObject.position, hit);
-            }
-        }
+        //Gizmos.color = Color.yellow;
+        //if (hits != null)
+        //{
+        //    foreach (Vector2 hit in hits)
+        //    {
+        //        Gizmos.DrawLine(rayHeadObject.position, hit);
+        //    }
+        //}
 
-        if (drawGizmoAngle)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(rayHeadObject.position, (Vector2)rayHeadObject.position + new Vector2
-            (
-                Mathf.Cos(gizmoAngle) * rayReachDistance,
-                Mathf.Sin(gizmoAngle) * rayReachDistance
-            ));
-        }
+        //if (drawGizmoAngle)
+        //{
+        //    Gizmos.color = Color.green;
+        //    Gizmos.DrawLine(rayHeadObject.position, (Vector2)rayHeadObject.position + new Vector2
+        //    (
+        //        Mathf.Cos(gizmoAngle) * rayReachDistance,
+        //        Mathf.Sin(gizmoAngle) * rayReachDistance
+        //    ));
+        //}
 
         Gizmos.color = Color.gray;
         if (targetPoints != null)
@@ -197,7 +197,8 @@ public class FeetController : MonoBehaviour
             {
                 if (foot != null)
                 {
-                    Gizmos.DrawSphere((Vector3)foot, 0.18f);
+                    //Gizmos.DrawSphere((Vector3)foot, 0.18f);
+                    Gizmos.DrawLine(abdomenObject.position, (Vector3)foot);
                 }
             }
         }
