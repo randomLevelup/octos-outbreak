@@ -1,0 +1,27 @@
+
+####### TENTACLE CONTROL #######
+
+- get position of "head" a short distance above ball object
+
+- get position of "gaze" some distance in the direction of the input axis
+
+- keep an array of 8 (for for now) target points
+
+- raycast targeting beams distributed evenly, in the general direction of the input axis
+
+	- !!! update target points (in array) to the ray collisions closest to the "gaze" position
+
+- update feet targets toward hit points
+	
+	- keep one array of current feet targets, 2 more for their 'from' and 'to' hit positions, and 1 float array for 't' values
+
+	- when current foot is NOT near its 'to' position (outside a small radius), interpolate using the t value, then increment t
+
+	- when foot position comes close enough to 'to' target, switch values with 'from' and set 'to' to null
+
+### Alternatively
+- use a step function, select some of the tentacle feet to control
+
+- make sure the non-controlled feet stay on their spot
+
+- try to re-position feet along a parabolic arc
