@@ -24,6 +24,28 @@ public class Pickup : MonoBehaviour
         }
     }
 
+    // void Update()
+    // {
+    //     Debug.Log(jumpPower);
+    //
+    //     // transform.LookAt(Vector2.left);
+    //     float x = Input.GetAxis("Horizontal");
+    //
+    //     Vector2 movement = new Vector2(x,0);
+    //     transform.Translate(movement * speed * Time.deltaTime);
+    //
+    //     if (Input.GetKeyDown(KeyCode.Space)) {
+    //         if(onGround) {
+    //             float tempJump = 10;
+    //             if (jumpPower) {
+    //                 tempJump = 15;
+    //                 jumpPower = false;
+    //             }
+    //             rb.AddForce(Vector2.up * tempJump, ForceMode2D.Impulse);
+    //         }
+    //     }
+    // }
+
     private void FixedUpdate()
     {
         if (!isFollowingPlayer)
