@@ -190,8 +190,8 @@ MonoBehaviour:
   rayReachDistance: 3.1
   rayAngleRange: 2.15
   rayColliderLayerIndex: 2
-  numberOfFeet: 8
-  footVelocity: 0.009
+  numberOfFeet: 5
+  footVelocity: 0.09
   retargetThreshold: 2.5
   feetTargetRadius: 0.01
 --- !u!1 &70182229
@@ -728,7 +728,7 @@ Transform:
   m_GameObject: {fileID: 547324498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.46, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.92, y: 0.92, z: 0.92}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1011801560}
