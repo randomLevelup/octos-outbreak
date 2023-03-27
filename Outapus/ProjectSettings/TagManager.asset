@@ -5,7 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - PickupObject
+<<<<<<< HEAD
   - ground
+=======
+  - floor
+  - jumpPower
+>>>>>>> 4ce5fcc92d3018d0d87c3bf6e322f6e6a7749210
   layers:
   - Default
   - TransparentFX
