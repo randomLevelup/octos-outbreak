@@ -47,7 +47,7 @@ public class SwingHandler : MonoBehaviour
 
     //on collsiion enter tag with floot grouned = true;
     private void OnTriggerEnter2D(Collider2D other){
-        if(other.tag == "ground"){
+        if(other.tag == "floor"){
             grounded = true;
         }
     }

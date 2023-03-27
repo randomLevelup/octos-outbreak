@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/jake_scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Jupiter/octo-body/octobody.unity
+    guid: c5e2bc332de23d64c9e9d3daa4664258
+  - enabled: 1
+    path: Assets/Scenes/mic_scene.unity
+    guid: 646620b5790f34b4998516c312629e5c
+  - enabled: 1
+    path: Assets/Scenes/mat_scene.unity
+    guid: a87892671f88045d8b76ae199ceedbd7
   m_configObjects: {}
