@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SwingHandler : MonoBehaviour
 {
-    public GameObject octopus;
+    public Rigidbody2D octopus;
     private SpringJoint2D joint;
     public Rigidbody2D connectionBody;
     public Transform crosshair;
     bool swinging = true;
+    public int jumpHeight;
+    private bool grounded = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,17 +27,30 @@ public class SwingHandler : MonoBehaviour
         crosshair.position = crosshairPos;
         if(Input.GetMouseButtonDown(0)){
             connectionBody.position = crosshairPos;
+            joint.connectedBody = connectionBody;
+            swinging = true;
         }
-
+    
         if(Input.GetKeyUp(KeyCode.Space))
         {
             if(swinging){
-                joint.connectedBody = octopus.GetComponent<Rigidbody2D>();
+                joint.connectedBody = octopus;
+                swinging = false;
+                octopus.AddForce(new Vector3(0, jumpHeight/4, 0));
             }
-            else {
-                joint.connectedBody = connectionBody;
+            else if (grounded){
+                octopus.AddForce(new Vector3(0, jumpHeight, 0));
+                grounded = false;
             }
-            swinging = !swinging;
         }
     }
+
+    //on collsiion enter tag with floot grouned = true;
+    private void OnTriggerEnter2D(Collider2D other){
+        if(other.tag == "ground"){
+            grounded = true;
+        }
+    }
+    
+
 }
