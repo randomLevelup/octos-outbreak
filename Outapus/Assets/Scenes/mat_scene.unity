@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 181842897}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 860575686}
   - component: {fileID: 860575685}
   - component: {fileID: 860575687}
+  - component: {fileID: 860575690}
   - component: {fileID: 860575688}
   - component: {fileID: 860575689}
   m_Layer: 0
@@ -398,7 +399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860575684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.76, y: 0.81, z: 0}
+  m_LocalPosition: {x: 4.28, y: -2.69, z: 0}
   m_LocalScale: {x: 1.0541, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -478,6 +479,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &860575690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860575684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5612a3228a78a08478da3c1486060c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jump: 10
+  speed: 5
 --- !u!1 &968510368
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +630,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
