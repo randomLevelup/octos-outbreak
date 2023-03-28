@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Jupiter/feet-control/feet-control.unity
     guid: b37e6491793443d4896f52bb369f83bc
+  - enabled: 1
+    path: Assets/Scenes/madi_scene.unity
+    guid: 0f631ef70c5034beb82a15899517c39a
   m_configObjects: {}

@@ -1113,6 +1113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 2598633843130570546, guid: aa747134ccafc4fb0b2d935d7d76aeb5, type: 3}
+      propertyPath: numScenes
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2598633843130570547, guid: aa747134ccafc4fb0b2d935d7d76aeb5, type: 3}
       propertyPath: m_RootOrder
       value: 0
