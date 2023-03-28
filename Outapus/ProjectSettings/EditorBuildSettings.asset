@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/mat_scene.unity
     guid: a87892671f88045d8b76ae199ceedbd7
+  - enabled: 1
+    path: Assets/Jupiter/feet-control/feet-control.unity
+    guid: b37e6491793443d4896f52bb369f83bc
   m_configObjects: {}

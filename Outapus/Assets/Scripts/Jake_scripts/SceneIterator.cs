@@ -5,14 +5,9 @@ using UnityEngine;
 
 public class SceneIterator : MonoBehaviour
 {
+    public int numScenes = 5;
     public static int curScene = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyUp(KeyCode.N)){
@@ -22,6 +17,8 @@ public class SceneIterator : MonoBehaviour
 
     public void nextGame(){
         curScene++;
+        if (curScene == numScenes) { curScene= 0; }
+
         SceneManager.LoadScene(curScene);
     }
 }
