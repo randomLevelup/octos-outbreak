@@ -18,9 +18,7 @@ public class FeetController : MonoBehaviour
     public int rayColliderLayerIndex = 6;
     private List<Vector2> hits;
 
-    public int numberOfFeet = 4;
     private Vector2[] targetPoints;
-
     private Vector2[] feetPosCurrent;
     private Vector2[] feetPosFrom;
     private Vector2?[] feetPosTo;
@@ -32,6 +30,10 @@ public class FeetController : MonoBehaviour
     public float retargetThreshold = 2.5f;
     public float feetTargetRadius = 0.1f;
 
+    public int numberOfFeet = 4;
+    public float tentacleHeightOffset = 3.6f;
+    public GameObject[] tentacleObjects;
+
     private float gizmoAngle;
     private bool drawGizmoAngle;
 
@@ -39,6 +41,7 @@ public class FeetController : MonoBehaviour
     {
         drawGizmoAngle = false;
 
+        numberOfFeet = tentacleObjects.Length;
         targetPoints = new Vector2[numberOfFeet];
 
         feetPosCurrent = new Vector2[numberOfFeet];
@@ -76,6 +79,22 @@ public class FeetController : MonoBehaviour
 
         // update feet position using spherical interpolation
         RetargetFeet();
+
+        // update all tentacle game objects
+        RepositionGameObjects();
+    }
+
+    private void RepositionGameObjects()
+    {
+        for (int i=0; i<numberOfFeet; i++)
+        {
+            Vector3 ikBasePos = abdomenObject.position;
+            ikBasePos.y += tentacleHeightOffset;
+            tentacleObjects[i].transform.position = ikBasePos;
+
+            TentacleTargetInterface targetComponent = tentacleObjects[i].GetComponent<TentacleTargetInterface>();
+            targetComponent.targetTransform.position = feetPosCurrent[i];
+        }
     }
 
     private void RetargetFeet()
