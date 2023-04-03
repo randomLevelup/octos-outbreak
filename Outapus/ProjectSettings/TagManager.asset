@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PickupObject
   - floor
+  - jumpPower
+  - doubleJumpPower
   layers:
   - Default
   - TransparentFX

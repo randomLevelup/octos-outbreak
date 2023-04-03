@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class mic_jump : MonoBehaviour
 {
     [SerializeField] float jump = 10;
-    [SerializeField] float speed = 5;
     Rigidbody2D rb;
     SpriteRenderer sprite;
     private bool onGround = false;
@@ -24,10 +23,6 @@ public class mic_jump : MonoBehaviour
         Debug.Log(jumpPower);
 
         // transform.LookAt(Vector2.left);
-        float x = Input.GetAxis("Horizontal");
-
-        Vector2 movement = new Vector2(x,0);
-        transform.Translate(movement * speed * Time.deltaTime);
 
         if(jumpPower) {
             sprite.color = new Color (50,100,0);
@@ -67,15 +62,4 @@ public class mic_jump : MonoBehaviour
             onGround = false;
         }
     }
-    // void OnCollisionEnter (Collider other) {
-    //     if(other.tag == "floor") {
-    //         onGround = true;
-    //     }
-    // }
-
-    // void OnCollisionExit (Collider other) {
-    //     if(other.tag == "floor") {
-    //         onGround = false;
-    //     }
-    // }
 }
