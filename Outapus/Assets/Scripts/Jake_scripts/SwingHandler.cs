@@ -26,7 +26,9 @@ public class SwingHandler : MonoBehaviour
         Vector3 crosshairPos = new Vector3(mousePos.x, mousePos.y,0);
         
         crosshair.position = crosshairPos;
+        //create new connection
         if(Input.GetMouseButtonDown(0)){
+            
             connectionBody.position = crosshairPos;
             joint.connectedBody = connectionBody;
             swinging = true;
