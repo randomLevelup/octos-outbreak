@@ -10,7 +10,8 @@ public class SwingHandler : MonoBehaviour
     public Transform crosshair;
     bool swinging = true;
     public int jumpHeight;
-    private bool grounded = true;
+    //private bool grounded = true;
+    public LineRenderer lr;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,28 +30,33 @@ public class SwingHandler : MonoBehaviour
             connectionBody.position = crosshairPos;
             joint.connectedBody = connectionBody;
             swinging = true;
+            lr.enabled = true;
         }
     
         if(Input.GetKeyUp(KeyCode.Space))
         {
             if(swinging){
+                
                 joint.connectedBody = octopus;
                 swinging = false;
-                octopus.AddForce(new Vector3(0, jumpHeight/4, 0));
+                octopus.AddForce(new Vector3(0, jumpHeight, 0));
+                lr.enabled = false;
             }
+            /*
             else if (grounded){
                 octopus.AddForce(new Vector3(0, jumpHeight, 0));
                 grounded = false;
             }
+            */
         }
     }
-
+    /*
     //on collsiion enter tag with floot grouned = true;
     private void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "floor"){
             grounded = true;
         }
     }
-    
+    */
 
 }
