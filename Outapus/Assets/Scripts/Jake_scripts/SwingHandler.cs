@@ -15,7 +15,7 @@ public class SwingHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        joint = octopus.GetComponent<SpringJoint2D>();
+        joint = octopus.GetComponents<SpringJoint2D>()[1];
     }
 
     // Update is called once per frame
