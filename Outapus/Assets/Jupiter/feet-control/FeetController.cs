@@ -83,7 +83,10 @@ public class FeetController : MonoBehaviour
 
         // update target points if they are far from body
         RetargetTargets();
+    }
 
+    private void FixedUpdate()
+    {
         // update feet position using spherical interpolation
         RetargetFeet();
 

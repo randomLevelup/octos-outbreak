@@ -6,60 +6,38 @@ using UnityEngine.SceneManagement;
 public class mic_jump : MonoBehaviour
 {
     [SerializeField] float jump = 10;
-    Rigidbody2D rb;
-    SpriteRenderer sprite;
-    private bool onGround = false;
-    private bool jumpPower = false;
+    public Rigidbody2D controlBody;
+    public SpriteRenderer controlSprite;
+    private rbIsGrounded controlState;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        if (controlBody == null) { controlBody = GetComponent<Rigidbody2D>(); }
+        if (controlSprite == null) { controlSprite = GetComponent<SpriteRenderer>(); }
+        controlState = controlBody.GetComponent<rbIsGrounded>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(jumpPower);
-
-        // transform.LookAt(Vector2.left);
-
-        if(jumpPower) {
-            sprite.color = new Color (50,100,0);
+        if(controlState.isGrounded) {
+            controlSprite.color = new Color (50,100,0);
         }
         else {
-            sprite.color = new Color (100,100,100);
+            controlSprite.color = new Color (100,100,100);
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
-            if(onGround) {
+            if(controlState.isGrounded) {
                 float tempJump = 10;
-                if (jumpPower) {
+                if (controlState.jumpPower) {
                     tempJump = 15;
-                    jumpPower = false;
+                    controlState.jumpPower = false;
                 }
-                rb.AddForce(Vector2.up * tempJump, ForceMode2D.Impulse);
+                Debug.Log("Jump!");
+                controlBody.AddForce(Vector2.up * tempJump, ForceMode2D.Impulse);
             }
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("floor"))
-        {
-            onGround = true;
-        }
-        if (collision.gameObject.CompareTag("jumpPower")) {
-            jumpPower = true;
-        }
-    }
-
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("floor"))
-        {
-            onGround = false;
         }
     }
 }

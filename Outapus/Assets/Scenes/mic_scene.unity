@@ -389,8 +389,9 @@ GameObject:
   - component: {fileID: 642252410}
   - component: {fileID: 642252409}
   - component: {fileID: 642252408}
-  - component: {fileID: 642252411}
   - component: {fileID: 642252412}
+  - component: {fileID: 642252411}
+  - component: {fileID: 642252413}
   m_Layer: 0
   m_Name: Square
   m_TagString: Player
@@ -525,6 +526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: 10
+  controlBody: {fileID: 0}
+  controlSprite: {fileID: 0}
 --- !u!114 &642252412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,6 +541,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!114 &642252413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642252406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2676b4ed9bff84a98e6841c4ff47e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  jumpPower: 0
 --- !u!1 &778202635
 GameObject:
   m_ObjectHideFlags: 0
