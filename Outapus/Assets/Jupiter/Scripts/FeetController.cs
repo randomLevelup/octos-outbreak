@@ -1,7 +1,4 @@
-using JetBrains.Annotations;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FeetController : MonoBehaviour
@@ -16,11 +13,10 @@ public class FeetController : MonoBehaviour
     public float rayReachDistance = 4f;
     public float rayAngleRange = 160f;
     public int rayColliderLayerIndex = 6;
+    private int raycastLayerMask;
     private List<Vector2> hits;
 
-    public int numberOfFeet = 4;
     private Vector2[] targetPoints;
-
     private Vector2[] feetPosCurrent;
     private Vector2[] feetPosFrom;
     private Vector2?[] feetPosTo;
@@ -32,6 +28,11 @@ public class FeetController : MonoBehaviour
     public float retargetThreshold = 2.5f;
     public float feetTargetRadius = 0.1f;
 
+    public int numberOfFeet = 4;
+    public float tentacleHeightOffset = 3.6f;
+    public GameObject[] tentacleObjects;
+    private float[] tentacleRotations;
+
     private float gizmoAngle;
     private bool drawGizmoAngle;
 
@@ -39,7 +40,9 @@ public class FeetController : MonoBehaviour
     {
         drawGizmoAngle = false;
 
+        numberOfFeet = tentacleObjects.Length;
         targetPoints = new Vector2[numberOfFeet];
+        tentacleRotations = new float[numberOfFeet];
 
         feetPosCurrent = new Vector2[numberOfFeet];
         feetPosFrom = new Vector2[numberOfFeet];
@@ -48,6 +51,7 @@ public class FeetController : MonoBehaviour
         tValues = new float[numberOfFeet];
         curveEase = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
+        raycastLayerMask = 1 << rayColliderLayerIndex;
         hits = new List<Vector2>();
 
         for (int i=0; i<numberOfFeet; i++)
@@ -56,6 +60,11 @@ public class FeetController : MonoBehaviour
             feetPosCurrent[i] = Vector2.zero;
             feetPosFrom[i] = Vector2.zero;
             tValues[i] = 0f;
+
+            float rand = Random.Range(-50f, 50f);
+            Quaternion randRot = Quaternion.Euler(0f, 0f, rand);
+            tentacleObjects[i].transform.rotation = randRot;
+            tentacleRotations[i] = rand;
         }
     }
 
@@ -73,9 +82,37 @@ public class FeetController : MonoBehaviour
 
         // update target points if they are far from body
         RetargetTargets();
+    }
 
+    private void FixedUpdate()
+    {
         // update feet position using spherical interpolation
         RetargetFeet();
+
+        // update all tentacle game objects
+        RepositionGameObjects();
+    }
+
+    private void RepositionGameObjects()
+    {
+        for (int i=0; i<numberOfFeet; i++)
+        {
+            tentacleObjects[i].transform.position = adjustIkBase(i);
+
+            TentacleTargetInterface targetComponent = tentacleObjects[i].GetComponent<TentacleTargetInterface>();
+            targetComponent.targetTransform.position = feetPosCurrent[i];
+        }
+    }
+
+    public Vector3 adjustIkBase(int i)
+    {
+        Vector3 res = rayHeadObject.transform.position;
+        float theta = tentacleRotations[i] * Mathf.Deg2Rad;
+
+        res.x += tentacleHeightOffset * Mathf.Sin(theta);
+        res.y += tentacleHeightOffset + (-Mathf.Cos(theta) - 1);
+
+        return res;
     }
 
     private void RetargetFeet()
@@ -134,7 +171,8 @@ public class FeetController : MonoBehaviour
             (
                 rayHeadObject.position,
                 rayDirection,
-                rayReachDistance
+                rayReachDistance,
+                raycastLayerMask
             );
 
             if (hit.collider != null)
@@ -171,15 +209,15 @@ public class FeetController : MonoBehaviour
         //    }
         //}
 
-        //if (drawGizmoAngle)
-        //{
-        //    Gizmos.color = Color.green;
-        //    Gizmos.DrawLine(rayHeadObject.position, (Vector2)rayHeadObject.position + new Vector2
-        //    (
-        //        Mathf.Cos(gizmoAngle) * rayReachDistance,
-        //        Mathf.Sin(gizmoAngle) * rayReachDistance
-        //    ));
-        //}
+        if (drawGizmoAngle)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(rayHeadObject.position, (Vector2)rayHeadObject.position + new Vector2
+            (
+                Mathf.Cos(gizmoAngle) * rayReachDistance,
+                Mathf.Sin(gizmoAngle) * rayReachDistance
+            ));
+        }
 
         Gizmos.color = Color.gray;
         if (targetPoints != null)
@@ -197,8 +235,8 @@ public class FeetController : MonoBehaviour
             {
                 if (foot != null)
                 {
-                    //Gizmos.DrawSphere((Vector3)foot, 0.18f);
-                    Gizmos.DrawLine(abdomenObject.position, (Vector3)foot);
+                    Gizmos.DrawSphere((Vector3)foot, 0.18f);
+                    //Gizmos.DrawLine(abdomenObject.position, (Vector3)foot);
                 }
             }
         }

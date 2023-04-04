@@ -5,11 +5,23 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     public Rigidbody2D AbdomenObject;
-    public float pushStrength = 100f;
+    private rbIsGrounded rbControlState;
+
+    public float groundPush = 100f;
+    public float airPush = 50f;
+
+    private void Start()
+    {
+        rbControlState = AbdomenObject.GetComponent<rbIsGrounded>();
+    }
 
     private void FixedUpdate()
     {
-        Vector2 xForce = new Vector2(Input.GetAxisRaw("Horizontal") * pushStrength, 0);
-        AbdomenObject.AddForce(xForce);
+        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0)
+        {
+            float pushStrength = rbControlState.isGrounded ? groundPush : airPush;
+            Vector2 xForce = new Vector2(Input.GetAxisRaw("Horizontal") * pushStrength, 0);
+            AbdomenObject.AddForce(xForce);
+        }
     }
 }
