@@ -30,7 +30,7 @@ public class mic_double_jump : MonoBehaviour
         // transform.LookAt(Vector2.left);
 
         if (slowFall) {
-            rb.AddForce(Vector2.up * 2);
+            rb.AddForce(Vector2.up * 1);
             if(onGround) {
                 slowFall = false;
             }
