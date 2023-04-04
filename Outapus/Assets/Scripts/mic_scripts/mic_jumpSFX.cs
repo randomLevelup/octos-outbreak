@@ -17,6 +17,7 @@ public class mic_jumpSFX : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log("sound!");
             jumpSFX.Play();
         }
     }
