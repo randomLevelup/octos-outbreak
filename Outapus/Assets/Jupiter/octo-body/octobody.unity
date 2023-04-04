@@ -153,7 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AbdomenObject: {fileID: 165110479}
-  pushStrength: 20
+  groundPush: 100
+  airPush: 50
 --- !u!4 &114724277
 Transform:
   m_ObjectHideFlags: 0
@@ -185,6 +186,7 @@ GameObject:
   - component: {fileID: 165110480}
   - component: {fileID: 165110479}
   - component: {fileID: 165110483}
+  - component: {fileID: 165110484}
   m_Layer: 0
   m_Name: Abdomen
   m_TagString: Untagged
@@ -317,6 +319,20 @@ SpringJoint2D:
   m_Distance: 0.005
   m_DampingRatio: 0
   m_Frequency: 2
+--- !u!114 &165110484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165110478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2676b4ed9bff84a98e6841c4ff47e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  jumpPower: 0
 --- !u!1 &491500634
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +634,7 @@ GameObject:
   - component: {fileID: 1661795856}
   - component: {fileID: 1661795858}
   - component: {fileID: 1661795857}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

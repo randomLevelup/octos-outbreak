@@ -13,6 +13,7 @@ public class FeetController : MonoBehaviour
     public float rayReachDistance = 4f;
     public float rayAngleRange = 160f;
     public int rayColliderLayerIndex = 6;
+    private int raycastLayerMask;
     private List<Vector2> hits;
 
     private Vector2[] targetPoints;
@@ -50,6 +51,7 @@ public class FeetController : MonoBehaviour
         tValues = new float[numberOfFeet];
         curveEase = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
+        raycastLayerMask = 1 << rayColliderLayerIndex;
         hits = new List<Vector2>();
 
         for (int i=0; i<numberOfFeet; i++)
@@ -169,7 +171,8 @@ public class FeetController : MonoBehaviour
             (
                 rayHeadObject.position,
                 rayDirection,
-                rayReachDistance
+                rayReachDistance,
+                raycastLayerMask
             );
 
             if (hit.collider != null)
