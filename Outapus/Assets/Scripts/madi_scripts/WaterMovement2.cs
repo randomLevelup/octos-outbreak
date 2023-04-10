@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaterMovement2 : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private ConstantForce2D force;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,9 @@ public class WaterMovement2 : MonoBehaviour
             Debug.Log("test");
             //transform.Translate(Vector3.down * Time.deltaTime / 0.2f);
             rb.velocity = Vector2.zero;
-            rb.AddForce(Vector3.up * 0.4f, ForceMode2D.Impulse);
+            rb.AddForce(Vector3.up * 0.2f, ForceMode2D.Impulse);
         }
     }
+
+    
 }

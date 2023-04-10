@@ -9,6 +9,7 @@ TagManager:
   - jumpPower
   - doubleJumpPower
   - door
+  - water
   layers:
   - Default
   - TransparentFX

@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Jupiter/feet-control/feet-control.unity
     guid: b37e6491793443d4896f52bb369f83bc
   - enabled: 0
-    path: Assets/Scenes/madi_scene.unity
+    path: Assets/Scenes/Madison scenes/madi_scene.unity
     guid: 0f631ef70c5034beb82a15899517c39a
   - enabled: 1
     path: Assets/Scenes/build-week-8.unity
