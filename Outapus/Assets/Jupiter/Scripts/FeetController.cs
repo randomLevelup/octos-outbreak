@@ -106,7 +106,7 @@ public class FeetController : MonoBehaviour
 
     public Vector3 adjustIkBase(int i)
     {
-        Vector3 res = rayHeadObject.transform.position;
+        Vector3 res = rayHeadObject.transform.position + new Vector3(0, -0.5f);
         float theta = tentacleRotations[i] * Mathf.Deg2Rad;
 
         res.x += tentacleHeightOffset * Mathf.Sin(theta);
