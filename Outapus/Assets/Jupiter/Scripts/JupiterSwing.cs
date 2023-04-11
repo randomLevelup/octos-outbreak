@@ -21,7 +21,7 @@ public class JupiterSwing : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!swinging)
             {
