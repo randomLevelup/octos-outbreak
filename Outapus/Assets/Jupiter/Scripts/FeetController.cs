@@ -24,9 +24,13 @@ public class FeetController : MonoBehaviour
     private float[] tValues;
     private AnimationCurve curveEase;
     public float footVelocity = 0.05f;
+    public float flailAmount = 2.4f;
 
     public float retargetThreshold = 2.5f;
     public float feetTargetRadius = 0.1f;
+    public float minTargetDistance = 1f;
+    public bool targetsWithinRange = false;
+    private bool targetUpdateStep = false;
 
     public int numberOfFeet = 4;
     public float tentacleHeightOffset = 3.6f;
@@ -70,6 +74,18 @@ public class FeetController : MonoBehaviour
 
     private void Update()
     {
+        // check min distance between feet targets
+        float cDist = 999f;
+        targetsWithinRange = false;
+        int tentacleIndex = 0;
+        foreach (Vector2 cTarget in targetPoints)
+        {
+            cDist = Vector2.Distance(cTarget, tentacleObjects[tentacleIndex].transform.position);
+            targetsWithinRange = cDist < minTargetDistance;
+            targetUpdateStep = !targetsWithinRange && !targetUpdateStep;
+            tentacleIndex++;
+        }
+
         // update "gaze" position towards the input controller axis
         gazePos.x = abdomenObject.position.x + (Input.GetAxisRaw("Horizontal") * gazeDistance);
         gazePos.y = abdomenObject.position.y + (
@@ -82,15 +98,41 @@ public class FeetController : MonoBehaviour
 
         // update target points if they are far from body
         RetargetTargets();
+
     }
 
     private void FixedUpdate()
     {
-        // update feet position using spherical interpolation
-        RetargetFeet();
+        // update feet position using 1 of 2 methods
+        if (targetsWithinRange) { RetargetFeet(); } // spherical interpolation
+        else { RetargetFeetAirborne(); } // random noise when airborne
 
         // update all tentacle game objects
         RepositionGameObjects();
+    }
+
+    private void RetargetFeetAirborne()
+    {
+        Vector2 newPos = (Vector2)abdomenObject.position - new Vector2(0f, 1.5f);
+        for (int i=0; i<numberOfFeet; i++)
+        {
+            if (targetUpdateStep)
+            {
+                feetPosFrom[i] = feetPosCurrent[i];
+                tValues[i] = 0;
+            }
+            feetPosTo[i] = OffsetWithNoise(newPos, i, Time.fixedTime);
+        }
+        targetUpdateStep = false;
+        RetargetFeet();
+    }
+
+    private Vector2 OffsetWithNoise(Vector2 pos, int p1, float p2)
+    {
+        pos.x += (Mathf.PerlinNoise(p1, p2 + p1) - 0.5f) * flailAmount;
+        p1 += numberOfFeet;
+        pos.y += (Mathf.PerlinNoise(p1, p2 + p1) - 0.5f) * flailAmount;
+        return pos;
     }
 
     private void RepositionGameObjects()
@@ -121,10 +163,9 @@ public class FeetController : MonoBehaviour
             if (feetPosTo[i] != null)
             {
                 if (Vector2.Distance(feetPosCurrent[i], (Vector2)feetPosTo[i]) > feetTargetRadius) {
-                    float smoothT = curveEase.Evaluate(tValues[i]);
+                    float smoothT = IncrementTValue(i);
                     //feetPosCurrent[i] = Vector2.Lerp(feetPosFrom[i], (Vector2)feetPosTo[i], smoothT);
                     feetPosCurrent[i] = Vector3.Slerp(feetPosFrom[i], (Vector3)feetPosTo[i], smoothT);
-                    tValues[i] += footVelocity;
 
                 } else
                 {
@@ -133,6 +174,13 @@ public class FeetController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private float IncrementTValue(int index)
+    {
+        float res = curveEase.Evaluate(tValues[index]);
+        tValues[index] += footVelocity;
+        return res;
     }
 
     private void RetargetTargets()
