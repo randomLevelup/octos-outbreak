@@ -12,6 +12,7 @@ public class StaticSwingHandler : MonoBehaviour
     private SpringJoint2D[] allJoints;
     public GameObject SwingController;
     private LineController lineControllerScript;
+    public int boost;
 
 
     private SpringJoint2D currentJoint;
@@ -50,7 +51,8 @@ public class StaticSwingHandler : MonoBehaviour
                 currentJoint.connectedBody = null;
                 swinging = false;
                 lr.enabled = false;
-                
+                //add force
+                abdomenRB.AddForce(abdomenRB.velocity * boost / abdomenRB.velocity.magnitude);
             }
         }
     }
