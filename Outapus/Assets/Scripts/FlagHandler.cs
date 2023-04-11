@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class FlagHandler : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int numScenes = 5;
+    // public int numScenes = 4;
     public static int curScene = 0;
 
     void Update()
@@ -23,7 +23,7 @@ public class FlagHandler : MonoBehaviour
     public void nextGame()
     {
         curScene++;
-        curScene = curScene % numScenes;
+        // curScene = curScene % numScenes;
         
         SceneManager.LoadScene(curScene);
     }
