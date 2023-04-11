@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 821138307}
   - component: {fileID: 821138309}
   - component: {fileID: 821138310}
+  - component: {fileID: 821138311}
   m_Layer: 0
   m_Name: Octopus
   m_TagString: Untagged
@@ -614,7 +615,7 @@ SpringJoint2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821138301}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 1614768372}
@@ -699,6 +700,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   jumpPower: 0
+--- !u!231 &821138311
+SpringJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821138301}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 1614768372}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 1
+  m_Distance: 3.354102
+  m_DampingRatio: 0
+  m_Frequency: 1
 --- !u!1 &1566183505
 GameObject:
   m_ObjectHideFlags: 0
