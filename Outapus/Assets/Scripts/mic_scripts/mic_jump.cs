@@ -35,7 +35,6 @@ public class mic_jump : MonoBehaviour
                     tempJump = 15;
                     controlState.jumpPower = false;
                 }
-                Debug.Log("Jump!");
                 controlBody.AddForce(Vector2.up * tempJump, ForceMode2D.Impulse);
             }
         }
