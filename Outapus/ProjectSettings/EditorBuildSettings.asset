@@ -5,15 +5,30 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/mic scenes/(1)Tutorial_lvl.unity
+    guid: dd5da4900d42f1a42b0960b98e01591c
+  - enabled: 1
+    path: Assets/Scenes/mic scenes/(2)Jump_lvl.unity
+    guid: f5af25c85a8b04f4ba34645f0d568d8d
+  - enabled: 1
+    path: Assets/Jupiter/Basic Level/basic-level.unity
+    guid: 1c2b4eb7e14de144caa3fa71bf0a2021
+  - enabled: 1
+    path: Assets/Jupiter/Basic Level/swing-level.unity
+    guid: 7e4756cdcb38f5448aae6ef744a7f0f5
+  - enabled: 0
+    path: Assets/Scenes/mic scenes/mic_scene.unity
+    guid: 646620b5790f34b4998516c312629e5c
+  - enabled: 0
+    path: Assets/Scenes/mic scenes/mic_scene_double_jump.unity
+    guid: 028cb78a53be58746b37fd08439a6fc4
   - enabled: 0
     path: Assets/Scenes/jake_scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
     path: Assets/Jupiter/octo-body/octobody.unity
     guid: c5e2bc332de23d64c9e9d3daa4664258
-  - enabled: 0
-    path: Assets/Scenes/mic_scene.unity
-    guid: 646620b5790f34b4998516c312629e5c
   - enabled: 0
     path: Assets/Scenes/mat_scene.unity
     guid: a87892671f88045d8b76ae199ceedbd7
@@ -23,7 +38,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Madison scenes/madi_scene.unity
     guid: 0f631ef70c5034beb82a15899517c39a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/build-week-8.unity
     guid: decc8d994d5317b48b93fe6f76aa4b5c
   m_configObjects: {}
