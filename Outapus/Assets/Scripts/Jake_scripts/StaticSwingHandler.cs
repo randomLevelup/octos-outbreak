@@ -29,7 +29,7 @@ public class StaticSwingHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             if (!swinging)
             {
