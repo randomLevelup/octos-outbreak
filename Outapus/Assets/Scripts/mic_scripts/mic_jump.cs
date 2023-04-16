@@ -10,12 +10,15 @@ public class mic_jump : MonoBehaviour
     public SpriteRenderer controlSprite;
     private rbIsGrounded controlState;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         if (controlBody == null) { controlBody = GetComponent<Rigidbody2D>(); }
         if (controlSprite == null) { controlSprite = GetComponent<SpriteRenderer>(); }
         controlState = controlBody.GetComponent<rbIsGrounded>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,6 +39,7 @@ public class mic_jump : MonoBehaviour
                     controlState.jumpPower = false;
                 }
                 controlBody.AddForce(Vector2.up * tempJump, ForceMode2D.Impulse);
+                audioSource.Play();
             }
         }
     }

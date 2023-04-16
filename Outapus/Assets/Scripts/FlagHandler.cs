@@ -8,6 +8,12 @@ public class FlagHandler : MonoBehaviour
     // Start is called before the first frame update
     // public int numScenes = 4;
     public static int curScene = 0;
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -22,9 +28,9 @@ public class FlagHandler : MonoBehaviour
     }
     public void nextGame()
     {
+        audioSource.Play();
         curScene++;
         // curScene = curScene % numScenes;
-        
         SceneManager.LoadScene(curScene);
     }
 }
