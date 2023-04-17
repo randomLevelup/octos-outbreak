@@ -34,8 +34,6 @@ public class FeetController : MonoBehaviour
 
     public float targetImportance = 4.74f;
     public float targetSwitchIntensity = 4.3f;
-    //public bool targetsWithinRange = false;
-    //private bool targetUpdateStep = false;
 
     public int numberOfFeet = 4;
     public float tentacleHeightOffset = 3.6f;
@@ -79,18 +77,6 @@ public class FeetController : MonoBehaviour
 
     private void Update()
     {
-        // check min distance between feet targets
-        //float cDist = 999f;
-        //targetsWithinRange = false;
-        //int tentacleIndex = 0;
-        //foreach (Vector2 cTarget in targetPoints)
-        //{
-        //    cDist = Vector2.Distance(cTarget, tentacleObjects[tentacleIndex].transform.position);
-        //    targetsWithinRange = cDist < minTargetDistance;
-        //    targetUpdateStep = !targetsWithinRange && !targetUpdateStep;
-        //    tentacleIndex++;
-        //}
-
         //update "gaze" position towards the input controller axis
         gazePos.x = abdomenObject.position.x + (Input.GetAxisRaw("Horizontal") * gazeDistance);
         gazePos.y = abdomenObject.position.y + (
@@ -105,103 +91,57 @@ public class FeetController : MonoBehaviour
         RetargetTargets();
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() { RepositionGameObjects(); }
+
+    // cast rays to find target points; save all hits to an arraylist
+    private void CastRays()
     {
-        RepositionGameObjects();
-    }
+        float inputAxisAngle = GetVelocityVector();
+        DrawAngleGizmo(inputAxisAngle);
 
-    //private void RetargetFeetAirborne()
-    //{
-    //    Vector2 newPos = (Vector2)abdomenObject.position - new Vector2(0f, 1.5f);
-    //    for (int i=0; i<numberOfFeet; i++)
-    //    {
-    //        if (targetUpdateStep)
-    //        {
-    //            feetPosFrom[i] = feetPosCurrent[i];
-    //            tValues[i] = 0;
-    //        }
-    //        feetPosTo[i] = OffsetWithNoise(newPos, i, Time.fixedTime);
-    //    }
-    //    targetUpdateStep = false;
-    //    RetargetFeet();
-    //}
+        float thetaMin = inputAxisAngle - (rayAngleRange / 2);
+        float thetaMax = inputAxisAngle + (rayAngleRange / 2);
+        float thetaStep = rayAngleRange / numberOfRays;
 
-    private Vector2 OffsetWithNoise(Vector2 pos, int p1, float p2)
-    {
-        pos.x += (Mathf.PerlinNoise(p1, p2 + p1) - 0.5f) * flailAmount;
-        p1 += numberOfFeet;
-        pos.y += (Mathf.PerlinNoise(p1, p2 + p1) - 0.5f) * flailAmount;
-        return pos;
-    }
+        Vector2 rayDirection;
 
-    private void RepositionGameObjects()
-    {
-        //for (int i=0; i<numberOfFeet; i++)
-        //{
-        //    tentacleObjects[i].transform.position = adjustIkBase(i);
-
-        //    TentacleTargetInterface targetComponent = tentacleObjects[i].GetComponent<TentacleTargetInterface>();
-        //    targetComponent.targetTransform.position = feetPosCurrent[i];
-        //}
-        for (int i=0; i<numberOfFeet; i++)
+        for (float t=thetaMin; t<=thetaMax; t += thetaStep)
         {
-            // calculate hover position;
-            // get distance from abdomen to foot target
-            float dist = Vector2.Distance(feetPosCurrent[i], abdomenObject.position);
+            rayDirection = new Vector2( Mathf.Cos(t), Mathf.Sin(t) );
 
-            // find function to clamp/interpolate between current pos
-            // and hover pos
-            Vector2 newPos = importanceSlerp(feetPosCurrent[i], calculateHoverPos(i), dist);
-            //if (i == 5) { Debug.Log(dist); }
+            RaycastHit2D hit = Physics2D.Raycast
+            (
+                rayHeadObject.position,
+                rayDirection,
+                rayReachDistance,
+                raycastLayerMask
+            );
 
-            // adjust ikBase transform
-            // adjust tentacleTarget transform to function result
-            tentacleObjects[i].transform.position = adjustIkBase(i);
-            TentacleTargetInterface targetComponent = tentacleObjects[i].GetComponent<TentacleTargetInterface>();
-            targetComponent.targetTransform.position = newPos;
+            if (hit.collider != null)
+            {
+                hits.Add(hit.point);
+            }
         }
-
-        RetargetFeet();
-        // check min distance between feet targets
-        //float cDist = 999f;
-        //targetsWithinRange = false;
-        //int tentacleIndex = 0;
-        //foreach (Vector2 cTarget in targetPoints)
-        //{
-        //    cDist = Vector2.Distance(cTarget, tentacleObjects[tentacleIndex].transform.position);
-        //    targetsWithinRange = cDist < minTargetDistance;
-        //    targetUpdateStep = !targetsWithinRange && !targetUpdateStep;
-        //    tentacleIndex++;
-        //}
     }
 
-    // calculate targeting importance using a sigmoid interpolation
-    private Vector2 importanceSlerp(Vector2 a, Vector2 b, float d)
+    // retarget points if they are further away than allowed threshold
+    private void RetargetTargets()
     {
-        float res = -(d - targetImportance);
-        res = Mathf.Pow(targetSwitchIntensity, res);
-        res = 1 / (1 + res);
-        return Vector2.Lerp(a, b, res);
+        for (int i=0; i<targetPoints.Length; i++)
+        {
+            if (hits.Count > 0 && Vector2.Distance(gazePos, targetPoints[i]) > retargetThreshold)
+            {
+                int chosenHitIndex = Random.Range(0, hits.Count - 1);
+
+                feetPosFrom[i] = targetPoints[i];
+                targetPoints[i] = hits[chosenHitIndex];
+                feetPosTo[i] = targetPoints[i];
+                tValues[i] = 0;
+            }
+        }
     }
 
-    private Vector2 calculateHoverPos(int index)
-    {
-        Vector2 res = (Vector2)abdomenObject.position - new Vector2(0f, 0.5f);
-        res = OffsetWithNoise(res, index, Time.fixedTime);
-        return res;
-    }
-
-    public Vector3 adjustIkBase(int i)
-    {
-        Vector3 res = rayHeadObject.transform.position + new Vector3(0, -0.5f);
-        float theta = tentacleRotations[i] * Mathf.Deg2Rad;
-
-        res.x += tentacleHeightOffset * Mathf.Sin(theta);
-        res.y += tentacleHeightOffset + (-Mathf.Cos(theta) - 1);
-
-        return res;
-    }
-
+    // translate foot position along an eased curve for smooth "stepping"
     private void RetargetFeet()
     {
         float smoothT;
@@ -230,6 +170,39 @@ public class FeetController : MonoBehaviour
         }
     }
 
+    // update actual ik targets for each tentacle
+    private void RepositionGameObjects()
+    {
+        for (int i=0; i<numberOfFeet; i++)
+        {
+            // get distance from abdomen to foot target, then compute function
+            // to clamp/interpolate between current pos and hover pos
+            float dist = Vector2.Distance(feetPosCurrent[i], abdomenObject.position);
+            Vector2 newPos = ImportanceSlerp(feetPosCurrent[i], CalculateHoverPos(i), dist);
+
+            // adjust ikBase transform
+            // adjust tentacleTarget transform to function result
+            tentacleObjects[i].transform.position = AdjustIkBase(i);
+            TentacleTargetInterface targetComponent = tentacleObjects[i].GetComponent<TentacleTargetInterface>();
+            targetComponent.targetTransform.position = newPos;
+        }
+
+        RetargetFeet();
+    }
+
+    // returns the direction of velocity; shifts extreme angles towards the floor
+    private float GetVelocityVector()
+    {
+        Vector2 vel = abdomenObject.GetComponent<Rigidbody2D>().velocity;
+        if (vel.magnitude < 0.01) { return -(Mathf.PI/2); }
+
+        float res = Mathf.Atan2(vel.y, vel.x);
+        float floorBias = Mathf.Max(-rayFloorBias * Mathf.Cos(res), 0);
+        res += floorBias * ((res < 0) ? -1 : 1);
+        return res;
+    }
+
+    // evaluate the smooth step curve
     private float IncrementTValue(int index)
     {
         float res = curveEase.Evaluate(tValues[index]);
@@ -237,70 +210,40 @@ public class FeetController : MonoBehaviour
         return res;
     }
 
-    private void RetargetTargets()
+    // calculate targeting importance using a sigmoid interpolation
+    private Vector2 ImportanceSlerp(Vector2 a, Vector2 b, float d)
     {
-        for (int i=0; i<targetPoints.Length; i++)
-        {
-            // retarget points if they are further away than allowed threshold (#1)
-            if (hits.Count > 0 && Vector2.Distance(gazePos, targetPoints[i]) > retargetThreshold)
-            {
-                int chosenHitIndex = Random.Range(0, hits.Count - 1);
-
-                feetPosFrom[i] = targetPoints[i];
-                targetPoints[i] = hits[chosenHitIndex];
-                feetPosTo[i] = targetPoints[i];
-                tValues[i] = 0;
-            }
-        }
+        float res = -(d - targetImportance);
+        res = Mathf.Pow(targetSwitchIntensity, res);
+        res = 1 / (1 + res);
+        return Vector2.Lerp(a, b, res);
     }
 
-    private void CastRays()
+    private Vector2 CalculateHoverPos(int index)
     {
-        //float inputAxisAngle = getInputAxisAngle();
-        float inputAxisAngle = getVelocityVector();
-        DrawAngleGizmo(inputAxisAngle);
-
-        float thetaMin = inputAxisAngle - (rayAngleRange / 2);
-        float thetaMax = inputAxisAngle + (rayAngleRange / 2);
-        float thetaStep = rayAngleRange / numberOfRays;
-
-        Vector2 rayDirection;
-
-        for (float t=thetaMin; t<=thetaMax; t += thetaStep)
-        {
-            rayDirection = new Vector2( Mathf.Cos(t), Mathf.Sin(t) );
-
-            RaycastHit2D hit = Physics2D.Raycast
-            (
-                rayHeadObject.position,
-                rayDirection,
-                rayReachDistance,
-                raycastLayerMask
-            );
-
-            if (hit.collider != null)
-            {
-                hits.Add(hit.point);
-            }
-        }
-    }
-
-    private float getVelocityVector()
-    {
-        Vector2 vel = abdomenObject.GetComponent<Rigidbody2D>().velocity;
-        if (vel.magnitude < 0.01) { return -(Mathf.PI/2); }
-        float res = Mathf.Atan2(vel.y, vel.x);
-        float floorBias = Mathf.Max(-rayFloorBias * Mathf.Cos(res), 0);
-        res += floorBias * ((res < 0) ? -1 : 1);
+        Vector2 res = (Vector2)abdomenObject.position - new Vector2(0f, 0.5f);
+        res = OffsetWithNoise(res, index, Time.fixedTime);
         return res;
     }
 
-    //private float getInputAxisAngle()
-    //{
-    //    Vector2 gazeDirection = gazePos - (Vector2)rayHeadObject.position;
-    //    float res = Mathf.Atan2(gazeDirection.y, gazeDirection.x);
-    //    return res;
-    //}
+    private Vector2 OffsetWithNoise(Vector2 pos, int p1, float p2)
+    {
+        pos.x += (Mathf.PerlinNoise(p1, p2 + p1) - 0.5f) * flailAmount;
+        p1 += numberOfFeet;
+        pos.y += (Mathf.PerlinNoise(p1, p2 + p1) - 0.5f) * flailAmount;
+        return pos;
+    }
+
+    public Vector3 AdjustIkBase(int i)
+    {
+        Vector3 res = rayHeadObject.transform.position + new Vector3(0, -0.5f);
+        float theta = tentacleRotations[i] * Mathf.Deg2Rad;
+
+        res.x += tentacleHeightOffset * Mathf.Sin(theta);
+        res.y += tentacleHeightOffset + (-Mathf.Cos(theta) - 1);
+
+        return res;
+    }
 
     private void DrawAngleGizmo(float angle)
     {
@@ -349,7 +292,6 @@ public class FeetController : MonoBehaviour
                 if (foot != null)
                 {
                     Gizmos.DrawSphere((Vector3)foot, 0.18f);
-                    //Gizmos.DrawLine(abdomenObject.position, (Vector3)foot);
                 }
             }
         }
