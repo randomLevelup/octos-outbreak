@@ -10,6 +10,8 @@ TagManager:
   - doubleJumpPower
   - door
   - water
+  - head
+  - PauseMenuSlider
   layers:
   - Default
   - TransparentFX

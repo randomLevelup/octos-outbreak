@@ -733,7 +733,24 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8368237629710489860, guid: 5b11d64f7e3c10b46af091fc33669047, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5b11d64f7e3c10b46af091fc33669047, type: 3}
---- !u!43 &493716997
+--- !u!1 &605882536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 172435971478146996, guid: 8a8e85d3519e93445bc897004f25bdc2, type: 3}
+  m_PrefabInstance: {fileID: 172435971712268830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &605882542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605882536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1537dc2caa20a504baf45650ddc3e4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!43 &614799014
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -897,23 +914,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &605882536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 172435971478146996, guid: 8a8e85d3519e93445bc897004f25bdc2, type: 3}
-  m_PrefabInstance: {fileID: 172435971712268830}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &605882542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605882536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1537dc2caa20a504baf45650ddc3e4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &632629808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,8 +1073,8 @@ MonoBehaviour:
   - {x: 0.50000006, y: 0.5000001, z: 0}
   - {x: 0.50000006, y: -0.5, z: 0}
   m_ShapePathHash: 0
-  m_Mesh: {fileID: 493716997}
-  m_InstanceId: 56778
+  m_Mesh: {fileID: 614799014}
+  m_InstanceId: 59946
 --- !u!1 &680637202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,8 +1944,8 @@ Canvas:
   m_GameObject: {fileID: 1929899354}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 70182231}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
