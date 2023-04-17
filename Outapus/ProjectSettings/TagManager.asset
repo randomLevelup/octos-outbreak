@@ -11,6 +11,7 @@ TagManager:
   - door
   - water
   - head
+  - PauseMenuSlider
   layers:
   - Default
   - TransparentFX
