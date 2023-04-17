@@ -238,13 +238,13 @@ MonoBehaviour:
   rayColliderLayerIndex: 6
   footVelocity: 0.16
   flailAmount: 2.94
-  retargetThreshold: 3
+  retargetThreshold: 2.19
   minTargetRadius: 0.1
   maxTargetRadius: 5.91
   targetImportance: 2.1
   targetSwitchIntensity: 3.37
   numberOfFeet: 8
-  tentacleHeightOffset: 1.01
+  tentacleHeightOffset: 0.89
   tentacleObjects:
   - {fileID: 4871793443647043640}
   - {fileID: 4871793444430957757}
