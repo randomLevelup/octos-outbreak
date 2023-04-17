@@ -17,20 +17,11 @@ public class PressurePlateController : MonoBehaviour
     {
         objectsOnPlate++;
         Debug.Log("object enterning pressure plate");
-        //if (collision.gameObject.CompareTag("Player"))
-        //{
-            // Debug.Log("player enterning pressure plate");
-            isActive = true;
-        //}
+        isActive = true;
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        // if (collision.gameObject.CompareTag("Player"))
-        // {
-        //     isActive = false;
-        // }
-
         objectsOnPlate--;
         if (objectsOnPlate <= 0)
         {
