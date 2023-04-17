@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/mic scenes/mic_scene_double_jump.unity
     guid: 028cb78a53be58746b37fd08439a6fc4
   - enabled: 0
-    path: Assets/Scenes/jake_scene.unity
+    path: Assets/Scenes/jake_scenes/jake_scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
     path: Assets/Jupiter/octo-body/octobody.unity
