@@ -12,7 +12,8 @@ public class FeetController : MonoBehaviour
 
     public int numberOfRays = 10;
     public float rayReachDistance = 4f;
-    public float rayAngleRange = 160f;
+    public float rayAngleRange = 1.7f;
+    public float rayFloorBias = 0.443f;
     public int rayColliderLayerIndex = 6;
     private int raycastLayerMask;
     private List<Vector2> hits;
@@ -28,8 +29,9 @@ public class FeetController : MonoBehaviour
     public float flailAmount = 2.4f;
 
     public float retargetThreshold = 2.5f;
-    public float feetTargetRadius = 0.1f;
-    public float minTargetDistance = 1f;
+    public float minTargetRadius = 0.1f;
+    public float maxTargetRadius = 2f;
+
     public float targetImportance = 4.74f;
     public float targetSwitchIntensity = 4.3f;
     //public bool targetsWithinRange = false;
@@ -89,7 +91,7 @@ public class FeetController : MonoBehaviour
         //    tentacleIndex++;
         //}
 
-        // update "gaze" position towards the input controller axis
+        //update "gaze" position towards the input controller axis
         gazePos.x = abdomenObject.position.x + (Input.GetAxisRaw("Horizontal") * gazeDistance);
         gazePos.y = abdomenObject.position.y + (
             Mathf.Max(0, Input.GetAxisRaw("Vertical") * gazeDistance)
@@ -184,7 +186,7 @@ public class FeetController : MonoBehaviour
 
     private Vector2 calculateHoverPos(int index)
     {
-        Vector2 res = (Vector2)abdomenObject.position - new Vector2(0f, 1.5f);
+        Vector2 res = (Vector2)abdomenObject.position - new Vector2(0f, 0.5f);
         res = OffsetWithNoise(res, index, Time.fixedTime);
         return res;
     }
@@ -202,12 +204,21 @@ public class FeetController : MonoBehaviour
 
     private void RetargetFeet()
     {
+        float smoothT;
+
         for (int i=0; i<numberOfFeet; i++) {
             if (feetPosTo[i] != null)
             {
-                if (Vector2.Distance(feetPosCurrent[i], (Vector2)feetPosTo[i]) > feetTargetRadius) {
-                    float smoothT = IncrementTValue(i);
-                    //feetPosCurrent[i] = Vector2.Lerp(feetPosFrom[i], (Vector2)feetPosTo[i], smoothT);
+                float footDistance = Vector2.Distance(feetPosCurrent[i], (Vector2)feetPosTo[i]);
+                if (footDistance > minTargetRadius) {
+                    if (footDistance > maxTargetRadius)
+                    {
+                        // instantly snap targets if they are too far
+                        tValues[i] = 1f;
+                        smoothT = curveEase.Evaluate(1f);
+
+                    } else { smoothT = IncrementTValue(i); }
+
                     feetPosCurrent[i] = Vector3.Slerp(feetPosFrom[i], (Vector3)feetPosTo[i], smoothT);
 
                 } else
@@ -277,16 +288,19 @@ public class FeetController : MonoBehaviour
     private float getVelocityVector()
     {
         Vector2 vel = abdomenObject.GetComponent<Rigidbody2D>().velocity;
+        if (vel.magnitude < 0.01) { return -(Mathf.PI/2); }
         float res = Mathf.Atan2(vel.y, vel.x);
+        float floorBias = Mathf.Max(-rayFloorBias * Mathf.Cos(res), 0);
+        res += floorBias * ((res < 0) ? -1 : 1);
         return res;
     }
 
-    private float getInputAxisAngle()
-    {
-        Vector2 gazeDirection = gazePos - (Vector2)rayHeadObject.position;
-        float res = Mathf.Atan2(gazeDirection.y, gazeDirection.x);
-        return res;
-    }
+    //private float getInputAxisAngle()
+    //{
+    //    Vector2 gazeDirection = gazePos - (Vector2)rayHeadObject.position;
+    //    float res = Mathf.Atan2(gazeDirection.y, gazeDirection.x);
+    //    return res;
+    //}
 
     private void DrawAngleGizmo(float angle)
     {
@@ -299,14 +313,14 @@ public class FeetController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(gazePos, 0.18f);
 
-        //Gizmos.color = Color.yellow;
-        //if (hits != null)
-        //{
-        //    foreach (Vector2 hit in hits)
-        //    {
-        //        Gizmos.DrawLine(rayHeadObject.position, hit);
-        //    }
-        //}
+        Gizmos.color = Color.yellow;
+        if (hits != null)
+        {
+            foreach (Vector2 hit in hits)
+            {
+                Gizmos.DrawLine(rayHeadObject.position, hit);
+            }
+        }
 
         if (drawGizmoAngle)
         {
