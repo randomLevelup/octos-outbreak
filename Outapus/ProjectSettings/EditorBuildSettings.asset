@@ -12,11 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/mic scenes/(2)Jump_lvl.unity
     guid: f5af25c85a8b04f4ba34645f0d568d8d
   - enabled: 1
-    path: Assets/Jupiter/Basic Level/basic-level.unity
-    guid: 1c2b4eb7e14de144caa3fa71bf0a2021
-  - enabled: 1
     path: Assets/Jupiter/Basic Level/swing-level.unity
     guid: 7e4756cdcb38f5448aae6ef744a7f0f5
+  - enabled: 1
+    path: Assets/Scenes/jake_scenes/NPC_test.unity
+    guid: 188004b6014084c9eb6653cbcb0c1b7a
+  - enabled: 1
+    path: Assets/Scenes/jake_scenes/death.unity
+    guid: 7effabecb5ede467eba8aba7a81c0ef5
+  - enabled: 0
+    path: Assets/Jupiter/Basic Level/basic-level.unity
+    guid: 1c2b4eb7e14de144caa3fa71bf0a2021
   - enabled: 0
     path: Assets/Scenes/mic scenes/mic_scene.unity
     guid: 646620b5790f34b4998516c312629e5c
