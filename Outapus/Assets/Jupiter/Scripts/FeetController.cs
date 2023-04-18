@@ -194,9 +194,9 @@ public class FeetController : MonoBehaviour
     private float GetVelocityVector()
     {
         Vector2 vel = abdomenObject.GetComponent<Rigidbody2D>().velocity;
-        if (vel.magnitude < 0.01) { return -(Mathf.PI/2); }
+        if (vel.magnitude < 0.1) { return -(Mathf.PI/2); }
 
-        float res = Mathf.Atan2(vel.y, vel.x);
+        float res = Mathf.Atan2(vel.y + 0.1f, vel.x);
         float floorBias = Mathf.Max(-rayFloorBias * Mathf.Cos(res), 0);
         res += floorBias * ((res < 0) ? -1 : 1);
         return res;
