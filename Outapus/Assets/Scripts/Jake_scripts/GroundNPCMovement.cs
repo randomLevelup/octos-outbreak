@@ -30,7 +30,7 @@ public class GroundNPCMovement : MonoBehaviour
         if(angle > 0){
             Jump();
         }
-        rb.AddForce(new Vector3(direction.x, 0, 0));
+        rb.AddForce(new Vector3(direction.x * Time.deltaTime * speed, 0, 0));
     }
 
     void OnCollisionEnter2D(Collision2D collision)
