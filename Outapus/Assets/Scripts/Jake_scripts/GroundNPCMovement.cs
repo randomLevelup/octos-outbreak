@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GroundNPCMovement : MonoBehaviour
 {
@@ -38,7 +40,7 @@ public class GroundNPCMovement : MonoBehaviour
         Debug.Log(collision.gameObject);
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            SceneManager.LoadScene("death");
         }
     }
     
