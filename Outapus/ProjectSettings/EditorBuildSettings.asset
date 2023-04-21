@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/mic scenes/(2)Jump_lvl.unity
     guid: f5af25c85a8b04f4ba34645f0d568d8d
-  - enabled: 1
-    path: Assets/Jupiter/Basic Level/basic-level.unity
-    guid: 1c2b4eb7e14de144caa3fa71bf0a2021
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Jupiter/Basic Level/swing-level.unity
     guid: 7e4756cdcb38f5448aae6ef744a7f0f5
@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/build-week-8.unity
     guid: decc8d994d5317b48b93fe6f76aa4b5c
+  - enabled: 1
+    path: Assets/Scenes/jake_scenes/death.unity
+    guid: 7effabecb5ede467eba8aba7a81c0ef5
   m_configObjects: {}
