@@ -27,7 +27,8 @@ public class GroundNPCMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(shadowState.shadowed == false){
+        //don't accelerate if in the air or palyer is under shadow
+        if(shadowState.shadowed == false && groundState.isGrounded){
             distance = Vector2.Distance(transform.position, player.transform.position);
             Vector2 direction = player.transform.position - transform.position;
             direction.Normalize();
@@ -36,6 +37,13 @@ public class GroundNPCMovement : MonoBehaviour
                 Jump();
             }
             rb.AddForce(new Vector3(direction.x * Time.deltaTime * speed, 0, 0));
+        }
+        //when in air, reduce linear drag
+        else if(!groundState.isGrounded){
+            rb.drag = 0;
+        }
+        else {
+            rb.drag = 1;
         }
     }
 
@@ -49,8 +57,6 @@ public class GroundNPCMovement : MonoBehaviour
     }
     
     void Jump(){
-        if(groundState.isGrounded){
-            rb.AddForce(new Vector3(0, jumpHeight, 0));
-        }
+        rb.AddForce(new Vector3(0, jumpHeight, 0));
     }
 }
