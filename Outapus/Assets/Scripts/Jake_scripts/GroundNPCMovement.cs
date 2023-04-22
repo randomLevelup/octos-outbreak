@@ -12,7 +12,7 @@ public class GroundNPCMovement : MonoBehaviour
     public float jumpHeight;
     private float distance;
     private Rigidbody2D rb;
-    private rbIsGrounded groundState;
+    private singleJumpIsGrounded groundState;
     private isShadowed shadowState;
 
 
@@ -20,7 +20,7 @@ public class GroundNPCMovement : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        groundState = this.GetComponent<rbIsGrounded>();
+        groundState = this.GetComponent<singleJumpIsGrounded>();
         shadowState = player.GetComponent<isShadowed>();
     }
 
@@ -28,7 +28,7 @@ public class GroundNPCMovement : MonoBehaviour
     void Update()
     {
         //don't accelerate if in the air or palyer is under shadow
-        if(shadowState.shadowed == false && groundState.isGrounded){
+        if(shadowState.shadowed == false ){
             distance = Vector2.Distance(transform.position, player.transform.position);
             Vector2 direction = player.transform.position - transform.position;
             direction.Normalize();
@@ -46,17 +46,10 @@ public class GroundNPCMovement : MonoBehaviour
             rb.drag = 1;
         }
     }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(collision.gameObject);
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            SceneManager.LoadScene("death");
-        }
-    }
     
     void Jump(){
-        rb.AddForce(new Vector3(0, jumpHeight, 0));
+        if(groundState.isGrounded){
+            rb.AddForce(new Vector3(0, jumpHeight, 0));
+        }
     }
 }
