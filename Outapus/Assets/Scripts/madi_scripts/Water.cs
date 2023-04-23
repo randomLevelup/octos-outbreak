@@ -32,11 +32,11 @@ public class Water : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("water");
+        Debug.Log(other.name);
         if (other.gameObject.CompareTag("head"))
         {
             inWater = true;
-            Debug.Log("water");
+            Debug.Log("octo in water");
             //controlState.isGrounded = true;
             player.gravityScale = 0.3f;
             player.velocity = new Vector3(0f, -3f, 0f);
@@ -59,13 +59,19 @@ public class Water : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("leave water");
-        inWater = false;
+        if (other.gameObject.CompareTag("head"))
+        {
+            Debug.Log("leave water");
+            inWater = false;
+            player.gravityScale = 2.25f;
+            player.AddForce(Vector2.up * 0.15f, ForceMode2D.Impulse);
+        }
+        
         //player.velocity = new Vector3(0f, 0f, 0f);
         //player.GetComponent<ConstantForce2D>().force = new Vector3(0, 0, 0);
-        player.gravityScale = 2.25f;
+        
         //player.AddForce(Vector3.up * 0.15f, ForceMode2D.Impulse);
-        player.AddForce(Vector2.up * 0.15f, ForceMode2D.Impulse);
+        
     }
 
 }
