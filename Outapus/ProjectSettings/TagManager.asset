@@ -12,6 +12,7 @@ TagManager:
   - water
   - head
   - PauseMenuSlider
+  - spawnPoint
   layers:
   - Default
   - TransparentFX
