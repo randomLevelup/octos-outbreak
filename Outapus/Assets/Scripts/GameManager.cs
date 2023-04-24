@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -58,10 +59,16 @@ public class GameManager : MonoBehaviour
     }
 
     public void RestartGame(){
-        Time.timeScale = 1f;
+        //pauseMenuUI.SetActive(false);
+        //Time.timeScale = 1f;
         // Add commands to zero-out any scores or other stats before restarting
-        // SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("main_screen");
         // Please also reset all static variables here, for new games!
+    }
+
+    public void StartGame(){
+        pauseMenuUI.SetActive(false);
+        SceneManager.LoadScene("(1)Tutorial_lvl");
     }
 
     public void QuitGame(){

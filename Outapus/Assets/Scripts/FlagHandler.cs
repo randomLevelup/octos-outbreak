@@ -7,7 +7,7 @@ public class FlagHandler : MonoBehaviour
 {
     // Start is called before the first frame update
     // public int numScenes = 4;
-    public static int curScene = 0;
+    public static int curScene = 1;
     private AudioSource audioSource;
 
     void Start()
