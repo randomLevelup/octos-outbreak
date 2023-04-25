@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Jupiter/framework-test.unity
+    guid: f3024c878f7a5904ead808d9fd003083
   m_configObjects: {}
