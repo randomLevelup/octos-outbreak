@@ -24,6 +24,11 @@ public class CameraController : MonoBehaviour
         trackEase = AnimationCurve.EaseInOut(-10f, -v, 10f, v);
         sigmoid = x => 1 / ((float)Math.Exp(-clampCoefficient * x));
 
+        InitBounds();
+    }
+
+    public void InitBounds()
+    {
         Camera camera = Camera.main;
         Vector2 halfCamSize = new Vector2(
             camera.orthographicSize * camera.aspect,
@@ -43,14 +48,15 @@ public class CameraController : MonoBehaviour
         float newY = transform.position.y + trackEase.Evaluate(vec.y);
         
         // if there was a way to make this a "soft clamp" i'd do it
-        newX = SoftClampTrig(newX, wallBoundsMin.x, wallBoundsMax.x, clampCoefficient);
-        newY = SoftClampTrig(newY, wallBoundsMin.y, wallBoundsMax.y, clampCoefficient);
+        newX = Mathf.Clamp(newX, wallBoundsMin.x, wallBoundsMax.x);
+        newY = Mathf.Clamp(newY, wallBoundsMin.y, wallBoundsMax.y);
 
         newPos = new Vector3(newX, newY, -10f);
     }
 
     private void FixedUpdate() { transform.position = newPos; }
 
+    // none of these functions are working but i dont know why
     private float SoftClampSig(float t, float min, float max)
     {
         float range = max - min;
@@ -84,10 +90,9 @@ public class CameraController : MonoBehaviour
     {
         t = Mathf.Clamp(t, min, max);
 
-        //float mid = (min + max) / 2;
-        //float range = max - min;
-        ////return mid + ((range / Mathf.PI) * Mathf.Asin((2 * (t - mid)) / range));
-        //return mid + ((range / 2) * Mathf.Sin((MathF.PI * (t - mid)) / range));
-        return t;
+        float mid = (min + max) / 2;
+        float range = max - min;
+        //return mid + ((range / Mathf.PI) * Mathf.Asin((2 * (t - mid)) / range));
+        return mid + ((range / 2) * Mathf.Sin((MathF.PI * (t - mid)) / range));
     }
 }
