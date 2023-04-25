@@ -57,6 +57,7 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate() { transform.position = newPos; }
 
     // none of these functions are working but i dont know why
+    // trying to implement something like this: https://www.desmos.com/calculator/4arrtq1rty
     private float SoftClampSig(float t, float min, float max)
     {
         float range = max - min;
