@@ -29,7 +29,7 @@ public class isShadowed : MonoBehaviour
                     Debug.Log("snake?!");
                     discoveredSFX.Play();
                 }
-                shadowed = false;
+                shadowed = false;   
             }
         }
         else {
