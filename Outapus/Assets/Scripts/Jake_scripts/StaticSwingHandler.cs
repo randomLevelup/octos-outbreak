@@ -12,6 +12,7 @@ public class StaticSwingHandler : MonoBehaviour
     private SpringJoint2D[] allJoints;
     public GameObject SwingController;
     private LineController lineControllerScript;
+    private rbIsGrounded groundState;
     public int boost;
 
 
@@ -24,12 +25,13 @@ public class StaticSwingHandler : MonoBehaviour
         abdomenRB = abdomenObject.GetComponent<Rigidbody2D>();
         lr.enabled = false;
         lineControllerScript = SwingController.GetComponent<LineController>();
+        groundState = abdomenObject.GetComponent<rbIsGrounded>();
 
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && groundState.isGrounded == false)
         {
             if (!swinging)
             {
