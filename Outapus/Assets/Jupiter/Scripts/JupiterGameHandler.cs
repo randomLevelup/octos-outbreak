@@ -10,6 +10,7 @@ public class JupiterGameHandler : MonoBehaviour
     public GameObject octoBodyPrefab;
     public Camera mainCam;
     public LineRenderer lineRenderer;
+    public GameObject NPCPrefab;
 
     private void Start() { currentLevelIndex = 0; InitializeLevel(); }
 
@@ -35,5 +36,13 @@ public class JupiterGameHandler : MonoBehaviour
         camController.abdomen = abdomen;
         camController.bounds = curLevel.cameraBounds;
         camController.InitBounds();
+        /*
+        //set The NPC's to target 
+        for(int i = 0; i < curLevel.NPCsSpawnPoint.Length; i++){
+            GameObject NPC = Instantiate(NPCPrefab, curLevel.NPCsSpawnPoint[i].transform.position,
+            Quaternion.identity);
+            NPC.GetComponent<GroundNPCMovement>().player = abdomen;
+        }
+        */
     }
 }

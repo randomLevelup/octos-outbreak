@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GroundNPCMovement : MonoBehaviour
 {
   // https://www.youtube.com/watch?v=2SXa10ILJms
-    public GameObject player;
+    public Transform player;
     public float speed;
     public float jumpHeight;
     private float distance;
@@ -29,8 +29,8 @@ public class GroundNPCMovement : MonoBehaviour
     {
         //don't accelerate if in the air or palyer is under shadow
         if(shadowState.shadowed == false ){
-            distance = Vector2.Distance(transform.position, player.transform.position);
-            Vector2 direction = player.transform.position - transform.position;
+            distance = Vector2.Distance(transform.position, transform.position);
+            Vector2 direction = transform.position - transform.position;
             direction.Normalize();
             float angle = Mathf.Atan2(direction.y,direction.x) * Mathf.Rad2Deg;
             if(angle > 0){
