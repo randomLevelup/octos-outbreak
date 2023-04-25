@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class isShadowed : MonoBehaviour
 {
-    public bool shadowed;
+    public bool shadowed = false;
     public Transform lightSource;
     public LayerMask layersToHit;
+    public AudioSource discoveredSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,11 @@ public class isShadowed : MonoBehaviour
                 shadowed = true;
             }
             else{
+                //if you were shadowed and walked out play alert sound 
+                if(shadowed){
+                    Debug.Log("snake?!");
+                    discoveredSFX.Play();
+                }
                 shadowed = false;
             }
         }
