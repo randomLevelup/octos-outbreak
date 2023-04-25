@@ -33,6 +33,10 @@ public class isShadowed : MonoBehaviour
             }
         }
         else {
+            if(shadowed){
+                Debug.Log("snake?!");
+                discoveredSFX.Play();
+            }
             shadowed = false;
         }
     }
