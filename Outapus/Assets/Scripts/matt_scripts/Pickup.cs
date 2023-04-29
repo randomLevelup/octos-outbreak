@@ -23,7 +23,7 @@ public class Pickup : MonoBehaviour
           {
               // Make the object follow the player
               //transform.position = player.position;
-              transform.position = new Vector3(player.position.x, player.position.y, player.position.z);
+              transform.position = new Vector3(player.position.x - 1, player.position.y, player.position.z);
           }
       }
 
