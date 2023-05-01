@@ -18,13 +18,16 @@ public class JupiterGameHandler : MonoBehaviour
     {
         LevelInterface curLevel = levels[currentLevelIndex].GetComponent<LevelInterface>();
 
-        GameObject octoBody = Instantiate(octoBodyPrefab,
-                                          curLevel.spawnPoint.transform.position,
-                                          Quaternion.identity);
-        Transform abdomen = octoBody.GetComponent<FeetController>().abdomenObject;
+        GameObject octoBody = Instantiate(octoBodyPrefab, curLevel.spawnPoint.transform.position, Quaternion.identity);
+        OctoAnimator octoAnim = octoBody.GetComponent<OctoAnimator>();
 
+        EyeMovement[] eyeScriptList = octoAnim.pupilsObject.GetComponents<EyeMovement>();
+        EyeMovement eyeScript = (eyeScriptList[0].enabled) ? eyeScriptList[0] : eyeScriptList[1];
+        eyeScript.rb = octoAnim.abdomenObject.GetComponent<Rigidbody2D>();
+        eyeScript.cam = mainCam;
+        
         LineController lineController = lineRenderer.GetComponent<LineController>();
-        lineController.player = abdomen;
+        lineController.player = octoAnim.abdomenObject;
         lineController.hinge = curLevel.hingeFolder.GetComponentsInChildren<SpringJoint2D>()[0].transform;
 
         StaticSwingHandler swingHandler = octoBody.GetComponent<StaticSwingHandler>();
@@ -33,7 +36,7 @@ public class JupiterGameHandler : MonoBehaviour
         swingHandler.SwingController = lineRenderer.gameObject;
 
         CameraController camController = mainCam.GetComponent<CameraController>();
-        camController.abdomen = abdomen;
+        camController.abdomen = octoAnim.abdomenObject;
         camController.bounds = curLevel.cameraBounds;
         camController.InitBounds();
        
@@ -41,7 +44,7 @@ public class JupiterGameHandler : MonoBehaviour
         for(int i = 0; i < curLevel.NPCsSpawnPoint.Length; i++){
             GameObject NPC = Instantiate(NPCPrefab, curLevel.NPCsSpawnPoint[i].transform.position,
             Quaternion.identity);
-            NPC.GetComponent<GroundNPCMovement>().player = abdomen;
+            NPC.GetComponent<GroundNPCMovement>().player = octoAnim.abdomenObject;
         }
         
     }

@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FeetController : MonoBehaviour
+public class OctoAnimator : MonoBehaviour
 {
     public Transform abdomenObject;
     public Transform rayHeadObject;
+    public Transform pupilsObject;
 
     private Vector2 gazePos;
     public float gazeDistance = 2f;

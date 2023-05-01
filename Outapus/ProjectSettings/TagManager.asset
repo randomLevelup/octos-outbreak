@@ -14,6 +14,7 @@ TagManager:
   - PauseMenuSlider
   - spawnPoint
   - GameHandler
+  - Pupils
   layers:
   - Default
   - TransparentFX
