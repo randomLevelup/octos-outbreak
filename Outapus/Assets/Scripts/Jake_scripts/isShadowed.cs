@@ -20,7 +20,7 @@ public class isShadowed : MonoBehaviour
         Vector3 direction = (lightSource.position - transform.position).normalized;
         RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, direction, float.MaxValue, layersToHit);
         if(raycastHit2D){
-            if(raycastHit2D.collider.gameObject.GetComponent("ShadowCaster2D") != null){
+            if( transform.TransformPoint(Vector3.zero);raycastHit2D.collider.gameObject.GetComponent("ShadowCaster2D") != null){
                 shadowed = true;
             }
             else{

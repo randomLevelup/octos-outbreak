@@ -8,4 +8,5 @@ public class LevelInterface : MonoBehaviour
     public GameObject spawnPoint;
     public GameObject hingeFolder;
     public Transform cameraBounds;
+    public Transform lightSource;
 }
