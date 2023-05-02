@@ -2188,7 +2188,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0de8d52a07b74479482f245700236e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCsSpawnPoint: []
+  NPCsSpawnPoint:
+  - {fileID: 7536636084877983120}
+  - {fileID: 7536636084336651640}
+  - {fileID: 7536636085608075319}
+  - {fileID: 7536636086419087068}
+  - {fileID: 7536636085278666757}
   spawnPoint: {fileID: 7536636085491807765}
   hingeFolder: {fileID: 7536636085727610832}
   cameraBounds: {fileID: 7536636085063890293}
@@ -3359,7 +3364,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -4712
+  m_InstanceId: 62714
 --- !u!1 &7866638649695256629
 GameObject:
   m_ObjectHideFlags: 0
@@ -3520,7 +3525,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -4692
+  m_InstanceId: 62694
 --- !u!1 &7866638649824765842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3681,7 +3686,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -4732
+  m_InstanceId: 62704
 --- !u!1 &7866638650690172045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3842,7 +3847,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -4682
+  m_InstanceId: 62724
 --- !u!1 &7866638650772379448
 GameObject:
   m_ObjectHideFlags: 0
@@ -4003,7 +4008,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -4722
+  m_InstanceId: 62680
 --- !u!1 &7866638650783461661
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,4 +4169,4 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -4702
+  m_InstanceId: 62742
