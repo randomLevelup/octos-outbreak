@@ -208,9 +208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e1ec0e21f6d44bb9c5c564d9ec85cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7295809550786238839, guid: 7237f252cdad54e64ae5fa1041f23490, type: 3}
+  abdomen: {fileID: 0}
   speed: 500
-  jumpHeight: 40
+  jumpHeight: 80
 --- !u!114 &4161130382878448899
 MonoBehaviour:
   m_ObjectHideFlags: 0
