@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GroundNPCMovement : MonoBehaviour
 {
   // https://www.youtube.com/watch?v=2SXa10ILJms
-    public GameObject player;
+    public GameObject abdomen;
     public float speed;
     public float jumpHeight;
     private float distance;
@@ -21,7 +21,7 @@ public class GroundNPCMovement : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         groundState = this.GetComponent<singleJumpIsGrounded>();
-        shadowState = player.GetComponent<isShadowed>();
+        shadowState = abdomen.GetComponent<isShadowed>();
     }
 
     // Update is called once per frame
@@ -29,8 +29,8 @@ public class GroundNPCMovement : MonoBehaviour
     {
         //don't accelerate if in the air or palyer is under shadow
         if(shadowState.shadowed == false ){
-            distance = Vector2.Distance(player.transform.position, transform.position);
-            Vector2 direction = player.transform.position - transform.position;
+            distance = Vector2.Distance(abdomen.transform.position, transform.position);
+            Vector2 direction = abdomen.transform.position - transform.position;
             direction.Normalize();
             float angle = Mathf.Atan2(direction.y,direction.x) * Mathf.Rad2Deg;
             if(angle > 0){
