@@ -7,11 +7,11 @@ public class isShadowed : MonoBehaviour
     public bool shadowed = false;
     public Transform lightSource;
     public LayerMask layersToHit;
-    public AudioSource discoveredSFX;
+    private AudioSource discoveredSFX;
     // Start is called before the first frame update
     void Start()
     {
-        
+        discoveredSFX = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
