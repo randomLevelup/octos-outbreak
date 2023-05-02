@@ -18,20 +18,15 @@ public class isShadowed : MonoBehaviour
     void Update()
     {
         Vector3 direction = (lightSource.position - transform.position).normalized;
-        Debug.Log("player pos" + transform.position);
-        Debug.Log("light pos" + lightSource.position);
-        Debug.Log(direction);
         RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, direction, float.MaxValue, layersToHit);
         
         if(raycastHit2D){
             if(raycastHit2D.collider.gameObject.GetComponent("ShadowCaster2D") != null){
-                Debug.Log("we hitting this" + raycastHit2D.collider.gameObject);
                 shadowed = true;
             }
             else{
                 //if you were shadowed and walked out play alert sound 
                 if(shadowed){
-                    Debug.Log("snake?!");
                     discoveredSFX.Play();
                 }
                 shadowed = false;   
@@ -39,7 +34,6 @@ public class isShadowed : MonoBehaviour
         }
         else {
             if(shadowed){
-                Debug.Log("snake?!");
                 discoveredSFX.Play();
             }
             shadowed = false;

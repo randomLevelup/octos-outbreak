@@ -1371,7 +1371,7 @@ PrefabInstance:
     - target: {fileID: 2937237562165470735, guid: 7237f252cdad54e64ae5fa1041f23490, type: 3}
       propertyPath: discoveredSFX
       value: 
-      objectReference: {fileID: 7073147639888894692, guid: 2644482878cf840af86630a44ad3b76b, type: 3}
+      objectReference: {fileID: 5362300736336177737, guid: 3ca80242e832544e1b51b1798b768f24, type: 3}
     - target: {fileID: 2937237562165470735, guid: 7237f252cdad54e64ae5fa1041f23490, type: 3}
       propertyPath: layersToHit.m_Bits
       value: 64
