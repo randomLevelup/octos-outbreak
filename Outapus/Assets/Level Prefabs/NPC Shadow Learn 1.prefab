@@ -793,7 +793,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7536636084915198680}
   m_LocalRotation: {x: -0, y: -0, z: 0.9997663, w: -0.021618512}
-  m_LocalPosition: {x: 10.3, y: 28.6, z: 0}
+  m_LocalPosition: {x: 10.8, y: 26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -816,10 +816,10 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.393
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2.23
-  m_LightVolumeIntensity: 1
-  m_LightVolumeIntensityEnabled: 0
+  m_Color: {r: 0.67358494, g: 1, b: 0.9032393, a: 1}
+  m_Intensity: 4.68
+  m_LightVolumeIntensity: 0.1
+  m_LightVolumeIntensityEnabled: 1
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
@@ -3364,7 +3364,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 226490
+  m_InstanceId: 287756
 --- !u!1 &7866638649695256629
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,7 +3525,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 226470
+  m_InstanceId: 287736
 --- !u!1 &7866638649824765842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,7 +3686,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 226480
+  m_InstanceId: 287746
 --- !u!1 &7866638650690172045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3847,7 +3847,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 226500
+  m_InstanceId: 287766
 --- !u!1 &7866638650772379448
 GameObject:
   m_ObjectHideFlags: 0
@@ -4008,7 +4008,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 226456
+  m_InstanceId: 287722
 --- !u!1 &7866638650783461661
 GameObject:
   m_ObjectHideFlags: 0
@@ -4169,4 +4169,4 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 226518
+  m_InstanceId: 287784
