@@ -28,6 +28,7 @@ public class FlagHandler : MonoBehaviour
     }
     public void nextGame()
     {
+        audioSource.volume = JupiterGameHandler.volumeLevel;
         audioSource.Play();
         curScene++;
         // curScene = curScene % numScenes;

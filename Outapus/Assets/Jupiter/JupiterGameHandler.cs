@@ -52,7 +52,7 @@ public class JupiterGameHandler : MonoBehaviour
             }
     }
 
-    void Pause(){
+    public void Pause(){
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             GameisPaused = true;
@@ -65,6 +65,7 @@ public class JupiterGameHandler : MonoBehaviour
     }
 
     public void SetLevel (float sliderValue){
+            Debug.Log("sliderValue = " + sliderValue);
             mixer.SetFloat("MusicVolume", Mathf.Log10 (sliderValue) * 20);
             volumeLevel = sliderValue;
     }

@@ -39,6 +39,8 @@ public class mic_jump : MonoBehaviour
                     controlState.jumpPower = false;
                 }
                 controlBody.AddForce(Vector2.up * tempJump, ForceMode2D.Impulse);
+
+                audioSource.volume = JupiterGameHandler.volumeLevel;
                 audioSource.Play();
             }
         }

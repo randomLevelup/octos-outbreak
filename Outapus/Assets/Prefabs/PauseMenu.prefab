@@ -280,9 +280,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 949503367777704762, guid: 84db8388253914db58db1b9ca4326d8a, type: 3}
+      - m_Target: {fileID: 11500000, guid: 1932dc9535dbdb84bac976e361f82d4d, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1122,9 +1122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 949503367777704762, guid: 84db8388253914db58db1b9ca4326d8a, type: 3}
+      - m_Target: {fileID: 11500000, guid: 1932dc9535dbdb84bac976e361f82d4d, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: RestartGame
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

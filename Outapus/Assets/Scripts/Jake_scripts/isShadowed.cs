@@ -19,17 +19,18 @@ public class isShadowed : MonoBehaviour
     {
         Vector3 direction = (lightSource.position - transform.position).normalized;
         RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, direction, float.MaxValue, layersToHit);
-        
+
         if(raycastHit2D){
             if(raycastHit2D.collider.gameObject.GetComponent("ShadowCaster2D") != null){
                 shadowed = true;
             }
             else{
-                //if you were shadowed and walked out play alert sound 
+                //if you were shadowed and walked out play alert sound
                 if(shadowed){
+                    discoveredSFX.volume = JupiterGameHandler.volumeLevel;
                     discoveredSFX.Play();
                 }
-                shadowed = false;   
+                shadowed = false;
             }
         }
         else {

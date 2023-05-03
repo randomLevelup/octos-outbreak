@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// should combine this with jump script after putting on octopus, so can program to only make noise when jumping. 
+// should combine this with jump script after putting on octopus, so can program to only make noise when jumping.
 public class mic_jumpSFX : MonoBehaviour
 {
     AudioSource jumpSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,8 @@ public class mic_jumpSFX : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log("sound!");
+            jumpSFX.volume = JupiterGameHandler.volumeLevel;
+            Debug.Log("sound! volume level " + jumpSFX.volume);
             jumpSFX.Play();
         }
     }

@@ -43,6 +43,7 @@ public class Pickup : MonoBehaviour
                           player = collider.gameObject.transform;
 
                           _audioSource.pitch = 1f;
+                          _audioSource.volume = JupiterGameHandler.volumeLevel;
                           _audioSource.Play();
                           break;
                       }
