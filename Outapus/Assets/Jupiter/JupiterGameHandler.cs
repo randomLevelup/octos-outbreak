@@ -99,21 +99,18 @@ public class JupiterGameHandler : MonoBehaviour
 
     public void InitializeLevel()
     {
-
-
+        for (int i=0; i<levels.Length; i++)
+        {
+            if (i == currentLevelIndex) { levels[i].SetActive(true); }
+            else { levels[i].SetActive(false); }
+        }
         LevelInterface curLevel = levels[currentLevelIndex].GetComponent<LevelInterface>();
-
-
-        NPC = new GameObject[curLevel.NPCsSpawnPoint.Length];
-
-        //destroy NPC's from previous scene
-
-
 
         GameObject octoBody = Instantiate(octoBodyPrefab,
                                           curLevel.spawnPoint.transform.position,
                                           Quaternion.identity);
         GameObject abdomen = octoBody.transform.GetChild(0).gameObject;
+
         //Set up the lightSource for is shadowed
         abdomen.GetComponent<isShadowed>().lightSource = curLevel.lightSource;
         Debug.Log(curLevel.lightSource);
@@ -138,12 +135,13 @@ public class JupiterGameHandler : MonoBehaviour
         camController.abdomen = octoAnim.abdomenObject;
         camController.bounds = curLevel.cameraBounds;
         camController.InitBounds();
+
         //set The NPC's to target
-        for(int i = 0; i < curLevel.NPCsSpawnPoint.Length; i++){
+        NPC = new GameObject[curLevel.NPCsSpawnPoint.Length];
+        for (int i = 0; i < curLevel.NPCsSpawnPoint.Length; i++){
             NPC[i] = Instantiate(NPCPrefab, curLevel.NPCsSpawnPoint[i].transform.position,
             Quaternion.identity);
             NPC[i].GetComponent<GroundNPCMovement>().abdomen = abdomen;
         }
-        Debug.Log("made it here");
     }
 }
