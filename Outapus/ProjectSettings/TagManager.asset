@@ -49,12 +49,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
+  - name: BG-Parallax
+    uniqueID: 2892810977
+    locked: 0
+  - name: TubFlag
+    uniqueID: 2902465237
     locked: 0
   - name: HiddenLights
     uniqueID: 198207945
     locked: 0
-  - name: TubFlag
-    uniqueID: 2902465237
+  - name: Default
+    uniqueID: 0
     locked: 0
