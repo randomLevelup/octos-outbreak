@@ -15,6 +15,7 @@ public class JupiterGameHandler : MonoBehaviour
     public LineRenderer lineRenderer;
     public GameObject NPCPrefab;
     private GameObject[] NPC;
+    private GameObject octoBody;
 
     public static bool GameisPaused = false;
     public GameObject pauseMenuUI;
@@ -91,10 +92,12 @@ public class JupiterGameHandler : MonoBehaviour
             #endif
     }
 
-    public void DestroyNPCs() {
+    //Destroyes NPCs and the Player
+    public void DestroyClones() {
         for(int i = 0; i < NPC.Length; i++){
             Destroy(NPC[i]);
         }
+        Destroy(octoBody);
     }
 
     public void InitializeLevel()
@@ -106,7 +109,7 @@ public class JupiterGameHandler : MonoBehaviour
         }
         LevelInterface curLevel = levels[currentLevelIndex].GetComponent<LevelInterface>();
 
-        GameObject octoBody = Instantiate(octoBodyPrefab,
+        octoBody = Instantiate(octoBodyPrefab,
                                           curLevel.spawnPoint.transform.position,
                                           Quaternion.identity);
         GameObject abdomen = octoBody.transform.GetChild(0).gameObject;
@@ -136,7 +139,7 @@ public class JupiterGameHandler : MonoBehaviour
         camController.bounds = curLevel.cameraBounds;
         camController.InitBounds();
 
-        //set The NPC's to target
+        //Instantiate NPC's and set to target
         NPC = new GameObject[curLevel.NPCsSpawnPoint.Length];
         for (int i = 0; i < curLevel.NPCsSpawnPoint.Length; i++){
             NPC[i] = Instantiate(NPCPrefab, curLevel.NPCsSpawnPoint[i].transform.position,

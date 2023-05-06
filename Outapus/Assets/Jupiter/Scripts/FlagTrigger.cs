@@ -12,7 +12,7 @@ public class FlagTrigger : MonoBehaviour
 
             JupiterGameHandler gameHandler = GameObject.FindWithTag("GameHandler").GetComponent<JupiterGameHandler>();
             gameHandler.currentLevelIndex++;
-            gameHandler.DestroyNPCs();
+            gameHandler.DestroyClones();
             gameHandler.InitializeLevel();
         }
     }

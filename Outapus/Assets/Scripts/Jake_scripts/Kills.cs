@@ -12,7 +12,9 @@ public class Kills : MonoBehaviour
         //Debug.Log(collision.gameObject);
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("death");
+            JupiterGameHandler gameHandler = GameObject.FindWithTag("GameHandler").GetComponent<JupiterGameHandler>();
+            gameHandler.DestroyClones();
+            gameHandler.InitializeLevel();
         }
     }
 }
