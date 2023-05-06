@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 14ed7680a6a0342b3a15e9d62f746795
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Mountana
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 899e6c28139db4abdbcba990952e957a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
