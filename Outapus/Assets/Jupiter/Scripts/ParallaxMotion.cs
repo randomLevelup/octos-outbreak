@@ -7,8 +7,8 @@ public class LayerPair
     public float depth;
     private Vector3 basePos;
 
-    public void SetBasePos() { basePos = obj.position; }
-    public void UpdateLayer(Vector3 diff) { obj.position = basePos + (diff / depth); }
+    public void SetBasePos() { basePos = obj.localPosition; }
+    public void UpdateLayer(Vector3 diff) { obj.localPosition = basePos + (diff / depth); }
 }
 
 public class ParallaxMotion : MonoBehaviour
@@ -18,11 +18,13 @@ public class ParallaxMotion : MonoBehaviour
 
     private Vector3 camBasePos;
 
-    private void Start()
+    public void InitializeCamera(Camera cam)
     {
         camBasePos = cam.transform.position;
         foreach (LayerPair layer in layers) { layer.SetBasePos(); }
     }
+
+    private void Start() { InitializeCamera(Camera.main); }
 
     private void FixedUpdate()
     {

@@ -14,6 +14,8 @@ public class JupiterGameHandler : MonoBehaviour
     public Camera mainCam;
     public LineRenderer lineRenderer;
     public GameObject NPCPrefab;
+
+
     private GameObject[] NPC;
     private GameObject octoBody;
 
@@ -138,6 +140,9 @@ public class JupiterGameHandler : MonoBehaviour
         camController.abdomen = octoAnim.abdomenObject;
         camController.bounds = curLevel.cameraBounds;
         camController.InitBounds();
+
+        ParallaxMotion bgScript = curLevel.BGParallax.GetComponent<ParallaxMotion>();
+        bgScript.InitializeCamera(mainCam);
 
         //Instantiate NPC's and set to target
         NPC = new GameObject[curLevel.NPCsSpawnPoint.Length];
