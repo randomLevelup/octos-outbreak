@@ -15,6 +15,7 @@ TagManager:
   - spawnPoint
   - GameHandler
   - Pupils
+  - Bubble
   layers:
   - Default
   - TransparentFX

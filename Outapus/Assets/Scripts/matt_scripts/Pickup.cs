@@ -10,20 +10,23 @@ public class Pickup : MonoBehaviour
       private bool isFollowingPlayer = false;
       private Transform player;
       private Rigidbody2D rb;
+      private GameObject bubble;
 
       private void Start()
       {
-          rb = GetComponent<Rigidbody2D>();
-          _audioSource = GetComponent<AudioSource> ();
+            rb = GetComponent<Rigidbody2D>();
+            _audioSource = GetComponent<AudioSource> ();
+            bubble = transform.GetChild(0).gameObject;
       }
 
       private void FixedUpdate()
       {
           if (isFollowingPlayer)
           {
+            bubble.SetActive(false);
               // Make the object follow the player
               //transform.position = player.position;
-              transform.position = new Vector3(player.position.x - 1, player.position.y, player.position.z);
+            transform.position = new Vector3(player.position.x - 1, player.position.y, player.position.z);
           }
       }
 
@@ -54,7 +57,8 @@ public class Pickup : MonoBehaviour
                   // Release the object
                   isFollowingPlayer = false;
                   player = null;
-              }
+                  bubble.SetActive(true);
+            }
           }
       }
 
