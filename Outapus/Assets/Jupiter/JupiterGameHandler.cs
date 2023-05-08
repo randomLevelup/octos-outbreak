@@ -142,7 +142,7 @@ public class JupiterGameHandler : MonoBehaviour
         camController.InitBounds();
 
         ParallaxMotion bgScript = curLevel.BGParallax.GetComponent<ParallaxMotion>();
-        bgScript.InitializeCamera(mainCam);
+        bgScript.InitializeCamera(curLevel.cameraBounds);
 
         //Instantiate NPC's and set to target
         NPC = new GameObject[curLevel.NPCsSpawnPoint.Length];
