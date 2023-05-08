@@ -10,6 +10,8 @@ public class CameraController : MonoBehaviour
 
     public float trackCoefficient = 3.5f;
     public float clampCoefficient = 0.8f;
+    public float snapCoefficient = 6f;
+
     private AnimationCurve trackEase;
     private Func<float, float> sigmoid;
 
@@ -20,11 +22,16 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        float v = trackCoefficient / 10f;
-        trackEase = AnimationCurve.EaseInOut(-10f, -v, 10f, v);
+        InitTrackSpeed();
         sigmoid = x => 1 / ((float)Math.Exp(-clampCoefficient * x));
 
         InitBounds();
+    }
+
+    private void InitTrackSpeed()
+    {
+        float v = trackCoefficient / 10f;
+        trackEase = AnimationCurve.EaseInOut(-10f, -v, 10f, v);
     }
 
     public void InitBounds()
@@ -55,6 +62,15 @@ public class CameraController : MonoBehaviour
     }
 
     private void FixedUpdate() { transform.position = newPos; }
+
+    public IEnumerator CameraSnap()
+    {
+        trackCoefficient *= snapCoefficient;
+        InitTrackSpeed();
+        yield return new WaitForSeconds(2f);
+        trackCoefficient /= snapCoefficient;
+        InitTrackSpeed();
+    }
 
     // none of these functions are working but i dont know why
     // trying to implement something like this: https://www.desmos.com/calculator/4arrtq1rty

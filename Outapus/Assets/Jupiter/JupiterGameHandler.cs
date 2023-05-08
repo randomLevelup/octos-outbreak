@@ -68,7 +68,6 @@ public class JupiterGameHandler : MonoBehaviour
     }
 
     public void SetLevel (float sliderValue){
-            Debug.Log("sliderValue = " + sliderValue);
             mixer.SetFloat("MusicVolume", Mathf.Log10 (sliderValue) * 20);
             volumeLevel = sliderValue;
     }
@@ -118,7 +117,6 @@ public class JupiterGameHandler : MonoBehaviour
 
         //Set up the lightSource for is shadowed
         abdomen.GetComponent<isShadowed>().lightSource = curLevel.lightSource;
-        Debug.Log(curLevel.lightSource);
         //GameObject octoBody = Instantiate(octoBodyPrefab, curLevel.spawnPoint.transform.position, Quaternion.identity);
         OctoAnimator octoAnim = octoBody.GetComponent<OctoAnimator>();
 
@@ -140,8 +138,10 @@ public class JupiterGameHandler : MonoBehaviour
         camController.abdomen = octoAnim.abdomenObject;
         camController.bounds = curLevel.cameraBounds;
         camController.InitBounds();
+        StartCoroutine(camController.CameraSnap());
 
         ParallaxMotion bgScript = curLevel.BGParallax.GetComponent<ParallaxMotion>();
+        bgScript.cam = Camera.main;
         bgScript.InitializeCamera(curLevel.cameraBounds);
 
         //Instantiate NPC's and set to target
