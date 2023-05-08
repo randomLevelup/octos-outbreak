@@ -18,13 +18,13 @@ public class ParallaxMotion : MonoBehaviour
 
     private Vector3 camBasePos;
 
-    public void InitializeCamera(Camera cam)
+    public void InitializeCamera(Transform levelBasePos)
     {
-        camBasePos = cam.transform.position;
+        camBasePos = levelBasePos.position;
         foreach (LayerPair layer in layers) { layer.SetBasePos(); }
     }
 
-    private void Start() { InitializeCamera(Camera.main); }
+    private void Start() { InitializeCamera(Camera.main.transform); }
 
     private void FixedUpdate()
     {
