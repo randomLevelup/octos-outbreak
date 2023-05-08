@@ -11,9 +11,11 @@ public class PressurePlateController : MonoBehaviour
 
     void Start()
     {
+        yPos = plate.transform.position.y;
+        Debug.Log(yPos);
         isActive = false;
         objectsOnPlate = 0;
-        yPos = transform.position.y;
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -21,7 +23,7 @@ public class PressurePlateController : MonoBehaviour
         objectsOnPlate++;
         Debug.Log("object enterning pressure plate");
         isActive = true;
-        transform.position = new Vector3(transform.position.x, yPos-0.0f, transform.position.z);
+        plate.transform.position = new Vector3(plate.transform.position.x, yPos-0.1f, plate.transform.position.z);
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -31,7 +33,7 @@ public class PressurePlateController : MonoBehaviour
         {
             isActive = false;
             objectsOnPlate = 0;
-            transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
+            plate.transform.position = new Vector3(plate.transform.position.x, yPos, plate.transform.position.z);
         }
     }
 
