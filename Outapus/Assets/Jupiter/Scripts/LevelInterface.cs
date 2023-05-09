@@ -10,5 +10,5 @@ public class LevelInterface : MonoBehaviour
     public GameObject BGParallax;
     public Transform cameraBounds;
     public Transform lightSource;
-    public boolean metalGearSound;
+    public bool metalGearSound;
 }
