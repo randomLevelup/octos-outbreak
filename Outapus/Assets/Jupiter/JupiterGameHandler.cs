@@ -114,6 +114,10 @@ public class JupiterGameHandler : MonoBehaviour
         }
         LevelInterface curLevel = levels[StaticVariables.currentLevelIndex].GetComponent<LevelInterface>();
 
+        ParallaxMotion bgScript = curLevel.BGParallax.GetComponent<ParallaxMotion>();
+        bgScript.cam = Camera.main;
+        bgScript.InitializeCamera(curLevel.cameraBounds);
+
         octoBody = Instantiate(octoBodyPrefab,
                                           curLevel.spawnPoint.transform.position,
                                           Quaternion.identity);
@@ -145,9 +149,6 @@ public class JupiterGameHandler : MonoBehaviour
         camController.InitBounds();
         StartCoroutine(camController.CameraSnap());
 
-        ParallaxMotion bgScript = curLevel.BGParallax.GetComponent<ParallaxMotion>();
-        bgScript.cam = Camera.main;
-        bgScript.InitializeCamera(curLevel.cameraBounds);
 
         //Instantiate NPC's and set to target
         NPC = new GameObject[curLevel.NPCsSpawnPoint.Length];
