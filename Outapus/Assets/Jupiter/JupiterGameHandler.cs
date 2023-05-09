@@ -39,7 +39,6 @@ public class JupiterGameHandler : MonoBehaviour
             pauseMenuUI.SetActive(false);
             GameisPaused = false;
 
-
             //DestroyClones();
             InitializeLevel();
     }
@@ -100,7 +99,10 @@ public class JupiterGameHandler : MonoBehaviour
         for(int i = 0; i < NPC.Length; i++){
             Destroy(NPC[i]);
         }
-        Destroy(octoBody);
+
+        if (octoBody is not null) {
+          Destroy(octoBody);
+        }
     }
 
     public void InitializeLevel()
