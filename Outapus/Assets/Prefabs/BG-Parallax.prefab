@@ -218,11 +218,11 @@ MonoBehaviour:
   cam: {fileID: 0}
   layers:
   - obj: {fileID: 8224180332842940277}
-    depth: 5
-  - obj: {fileID: 5230510949468387240}
-    depth: 5
-  - obj: {fileID: 5554992275270608524}
     depth: 10
+  - obj: {fileID: 5230510949468387240}
+    depth: 10
+  - obj: {fileID: 5554992275270608524}
+    depth: 5
 --- !u!1 &8697201018467185915
 GameObject:
   m_ObjectHideFlags: 0
