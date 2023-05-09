@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class JupiterGameHandler : MonoBehaviour
 {
-    public int currentLevelIndex;
+    //public int currentLevelIndex;
 
     public GameObject[] levels;
     public GameObject octoBodyPrefab;
@@ -39,7 +39,7 @@ public class JupiterGameHandler : MonoBehaviour
             pauseMenuUI.SetActive(false);
             GameisPaused = false;
 
-            currentLevelIndex = 0;
+            DestroyClones();
             InitializeLevel();
     }
 
@@ -105,10 +105,10 @@ public class JupiterGameHandler : MonoBehaviour
     {
         for (int i=0; i<levels.Length; i++)
         {
-            if (i == currentLevelIndex) { levels[i].SetActive(true); }
+            if (i == StaticVariables.currentLevelIndex) { levels[i].SetActive(true); }
             else { levels[i].SetActive(false); }
         }
-        LevelInterface curLevel = levels[currentLevelIndex].GetComponent<LevelInterface>();
+        LevelInterface curLevel = levels[StaticVariables.currentLevelIndex].GetComponent<LevelInterface>();
 
         octoBody = Instantiate(octoBodyPrefab,
                                           curLevel.spawnPoint.transform.position,

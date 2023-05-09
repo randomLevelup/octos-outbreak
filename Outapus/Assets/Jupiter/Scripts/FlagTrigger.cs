@@ -11,7 +11,8 @@ public class FlagTrigger : MonoBehaviour
             Destroy(collision.transform.parent.gameObject);
 
             JupiterGameHandler gameHandler = GameObject.FindWithTag("GameHandler").GetComponent<JupiterGameHandler>();
-            gameHandler.currentLevelIndex++;
+            //gameHandler.currentLevelIndex++;
+            StaticVariables.currentLevelIndex++;
             gameHandler.DestroyClones();
             gameHandler.InitializeLevel();
         }
