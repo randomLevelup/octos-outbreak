@@ -39,7 +39,7 @@ public class JupiterGameHandler : MonoBehaviour
             pauseMenuUI.SetActive(false);
             GameisPaused = false;
 
-            DestroyClones();
+            //DestroyClones();
             InitializeLevel();
     }
 
