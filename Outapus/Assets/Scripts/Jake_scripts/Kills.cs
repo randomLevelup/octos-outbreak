@@ -6,7 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class Kills : MonoBehaviour
 {
-    public AudioSource deathSound;
+    private AudioSource deathSound;
+
+    private void Start()
+    {
+        deathSound = GetComponent<AudioSource>();
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
