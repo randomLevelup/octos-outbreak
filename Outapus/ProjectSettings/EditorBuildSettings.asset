@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/main-level-framework.unity
     guid: b52001f3f92afa14489ca69cc2d6d409
-  - enabled: 1
+  - enabled: 0
     path: Assets/Jupiter/week-15-dev.unity
     guid: dc28f02ecff387746a3e083f994c50ff
   - enabled: 1
