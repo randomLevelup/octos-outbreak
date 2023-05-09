@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3441819819869798920}
   m_Layer: 0
   m_Name: DoorNew
-  m_TagString: door
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3441819819869798921}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e2c2b313638ca1a4083f608829c45745, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
