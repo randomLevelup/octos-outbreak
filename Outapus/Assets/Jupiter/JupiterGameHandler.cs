@@ -39,6 +39,7 @@ public class JupiterGameHandler : MonoBehaviour
             pauseMenuUI.SetActive(false);
             GameisPaused = false;
 
+
             //DestroyClones();
             InitializeLevel();
     }
@@ -76,6 +77,7 @@ public class JupiterGameHandler : MonoBehaviour
         //pauseMenuUI.SetActive(false);
         //Time.timeScale = 1f;
         // Add commands to zero-out any scores or other stats before restarting
+        StaticVariables.currentLevelIndex = 0;
         SceneManager.LoadScene("main_screen");
         // Please also reset all static variables here, for new games!
     }
