@@ -16,6 +16,7 @@ TagManager:
   - GameHandler
   - Pupils
   - Bubble
+  - Spikes
   layers:
   - Default
   - TransparentFX
