@@ -121,6 +121,7 @@ public class JupiterGameHandler : MonoBehaviour
 
         //Set up the lightSource for is shadowed
         abdomen.GetComponent<isShadowed>().lightSource = curLevel.lightSource;
+        abdomen.GetComponent<isShadowed>().solidSnake = curLevel.solidSnake;
         //GameObject octoBody = Instantiate(octoBodyPrefab, curLevel.spawnPoint.transform.position, Quaternion.identity);
         OctoAnimator octoAnim = octoBody.GetComponent<OctoAnimator>();
 

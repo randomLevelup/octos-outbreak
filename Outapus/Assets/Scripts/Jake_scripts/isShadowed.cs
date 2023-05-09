@@ -7,6 +7,7 @@ public class isShadowed : MonoBehaviour
     public bool shadowed = false;
     public Transform lightSource;
     public LayerMask layersToHit;
+    public bool solidSnake;
     private AudioSource discoveredSFX;
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,8 @@ public class isShadowed : MonoBehaviour
                     //if you were shadowed and walked out play alert sound
                     if (shadowed)
                     {
-                        discoveredSFX.Play();
+                        discoveredSFX.volume = JupiterGameHandler.volumeLevel;
+                        if (solidSnake) discoveredSFX.Play();
                     }
                     shadowed = false;
                 }
@@ -43,7 +45,7 @@ public class isShadowed : MonoBehaviour
                 if (shadowed)
                 {
                     discoveredSFX.volume = JupiterGameHandler.volumeLevel;
-                    discoveredSFX.Play();
+                    if (solidSnake) discoveredSFX.Play();
                 }
                 shadowed = false;
             }
