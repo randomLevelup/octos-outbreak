@@ -9,8 +9,6 @@ public class mic_jump : MonoBehaviour
     public Rigidbody2D controlBody;
     public SpriteRenderer controlSprite;
     public AudioSource audioSource;
-    public AudioSource walk1;
-    public AudioSource walk2;
     private rbIsGrounded controlState;
 
 
