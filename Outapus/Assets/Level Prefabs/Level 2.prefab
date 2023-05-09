@@ -1918,7 +1918,7 @@ MonoBehaviour:
   - {x: 0.50000006, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 155986
+  m_InstanceId: 288262
 --- !u!1 &3127240518911333034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,7 +2079,7 @@ MonoBehaviour:
   - {x: 0.50000006, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 155988
+  m_InstanceId: 288264
 --- !u!1 &5104706362468221465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2780,7 +2780,7 @@ MonoBehaviour:
   - {x: 0.50000006, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 156052
+  m_InstanceId: 288328
 --- !u!1 &5104706363010359713
 GameObject:
   m_ObjectHideFlags: 0
@@ -3081,7 +3081,7 @@ MonoBehaviour:
   hingeFolder: {fileID: 5104706364086850713}
   BGParallax: {fileID: 3108558214430420736}
   cameraBounds: {fileID: 5104706364162623729}
-  lightSource: {fileID: 1120566462818671810}
+  lightSource: {fileID: 0}
 --- !u!1 &5104706363095250197
 GameObject:
   m_ObjectHideFlags: 0
@@ -4881,7 +4881,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 156220
+  m_InstanceId: 288496
 --- !u!1 &5130201529458724583
 GameObject:
   m_ObjectHideFlags: 0
@@ -5042,7 +5042,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 156232
+  m_InstanceId: 288508
 --- !u!1 &5130201530205887816
 GameObject:
   m_ObjectHideFlags: 0
@@ -5203,7 +5203,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 156234
+  m_InstanceId: 288510
 --- !u!1 &5130201530646542417
 GameObject:
   m_ObjectHideFlags: 0
@@ -5364,7 +5364,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 156256
+  m_InstanceId: 288532
 --- !u!1 &7502366326508768421
 GameObject:
   m_ObjectHideFlags: 0
@@ -6532,7 +6532,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 156284
+  m_InstanceId: 288560
 --- !u!1 &7869896241370189347
 GameObject:
   m_ObjectHideFlags: 0
@@ -6777,7 +6777,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 156308
+  m_InstanceId: 288584
 --- !u!1 &7869896241659209511
 GameObject:
   m_ObjectHideFlags: 0
@@ -6938,7 +6938,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 156316
+  m_InstanceId: 288592
 --- !u!1001 &2488243972679321280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7417,7 +7417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136704997001506190, guid: e81c9e006d343204cb16e58e1e13a5f7, type: 3}
       propertyPath: m_InstanceId
-      value: -352882
+      value: -526668
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81c9e006d343204cb16e58e1e13a5f7, type: 3}
@@ -7507,7 +7507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136704997001506190, guid: e81c9e006d343204cb16e58e1e13a5f7, type: 3}
       propertyPath: m_InstanceId
-      value: -352892
+      value: -526678
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81c9e006d343204cb16e58e1e13a5f7, type: 3}
@@ -7597,7 +7597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136704997001506190, guid: e81c9e006d343204cb16e58e1e13a5f7, type: 3}
       propertyPath: m_InstanceId
-      value: -352902
+      value: -526688
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81c9e006d343204cb16e58e1e13a5f7, type: 3}
