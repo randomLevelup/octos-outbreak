@@ -30,13 +30,11 @@ public class InputController : MonoBehaviour
             if(rbControlState.isGrounded) {
                 if(!walk1.isPlaying && !walk2.isPlaying && !pause.isPlaying) {
                     if (WalkClip == 1){
-                        walk2.volume = JupiterGameHandler.volumeLevel;
                         walk2.Play();
                         pause.Play();
                         WalkClip = 2;
                     }
                     else {
-                        walk1.volume = JupiterGameHandler.volumeLevel;
                         Debug.Log("pause");
                         walk1.Play();
                         pause.Play();
