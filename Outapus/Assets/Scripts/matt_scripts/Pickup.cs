@@ -11,12 +11,15 @@ public class Pickup : MonoBehaviour
       private Transform player;
       private Rigidbody2D rb;
       private GameObject bubble;
+      private Vector3 pos;
 
       private void Start()
       {
+        Debug.Log("test");
             rb = GetComponent<Rigidbody2D>();
             _audioSource = GetComponent<AudioSource> ();
             bubble = transform.GetChild(0).gameObject;
+            pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
       }
 
       private void FixedUpdate()
@@ -61,5 +64,12 @@ public class Pickup : MonoBehaviour
             }
           }
       }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spikes")) {
+            transform.position = pos;
+        }
+    }
 
 }
