@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/jake_scenes/death.unity
     guid: 7effabecb5ede467eba8aba7a81c0ef5
+  - enabled: 1
+    path: Assets/Scenes/mat_scenes/main_screen.unity
+    guid: 17217c8c403624dba80e1238f428bc6c
   m_configObjects: {}
