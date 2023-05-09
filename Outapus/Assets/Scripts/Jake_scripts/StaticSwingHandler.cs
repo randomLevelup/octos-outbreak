@@ -14,6 +14,7 @@ public class StaticSwingHandler : MonoBehaviour
     private LineController lineControllerScript;
     private rbIsGrounded groundState;
     public int boost;
+    public AudioSource kerchack;
 
 
     private SpringJoint2D currentJoint;
@@ -55,6 +56,8 @@ public class StaticSwingHandler : MonoBehaviour
                 lr.enabled = false;
                 //add force
                 abdomenRB.AddForce(abdomenRB.velocity * boost / abdomenRB.velocity.magnitude);
+
+                kerchack.Play();
             }
         }
     }

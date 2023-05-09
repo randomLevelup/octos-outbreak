@@ -17,27 +17,37 @@ public class isShadowed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = (lightSource.position - transform.position).normalized;
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, direction, float.MaxValue, layersToHit);
+        if (lightSource != null)
+        {
+            Vector3 direction = (lightSource.position - transform.position).normalized;
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, direction, float.MaxValue, layersToHit);
 
-        if(raycastHit2D){
-            if(raycastHit2D.collider.gameObject.GetComponent("ShadowCaster2D") != null){
-                shadowed = true;
+            if (raycastHit2D)
+            {
+                if (raycastHit2D.collider.gameObject.GetComponent("ShadowCaster2D") != null)
+                {
+                    shadowed = true;
+                }
+                else
+                {
+                    //if you were shadowed and walked out play alert sound
+                    if (shadowed)
+                    {
+                        discoveredSFX.Play();
+                    }
+                    shadowed = false;
+                }
             }
-            else{
-                //if you were shadowed and walked out play alert sound
-                if(shadowed){
+            else
+            {
+                if (shadowed)
+                {
+                    discoveredSFX.volume = JupiterGameHandler.volumeLevel;
                     discoveredSFX.Play();
                 }
                 shadowed = false;
             }
-        }
-        else {
-            if(shadowed){
-                discoveredSFX.volume = JupiterGameHandler.volumeLevel;
-                discoveredSFX.Play();
-            }
-            shadowed = false;
+
         }
     }
 }

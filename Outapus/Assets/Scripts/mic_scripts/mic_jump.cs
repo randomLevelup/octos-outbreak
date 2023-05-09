@@ -8,9 +8,9 @@ public class mic_jump : MonoBehaviour
     [SerializeField] float jump = 10;
     public Rigidbody2D controlBody;
     public SpriteRenderer controlSprite;
+    public AudioSource audioSource;
     private rbIsGrounded controlState;
 
-    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,6 @@ public class mic_jump : MonoBehaviour
         if (controlBody == null) { controlBody = GetComponent<Rigidbody2D>(); }
         if (controlSprite == null) { controlSprite = GetComponent<SpriteRenderer>(); }
         controlState = controlBody.GetComponent<rbIsGrounded>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
