@@ -25,6 +25,8 @@ public class JupiterGameHandler : MonoBehaviour
     public static float volumeLevel = 1.0f;
     private Slider sliderVolumeCtrl;
 
+    private Vector3[] levelPositioningArray;
+
     void Awake (){
             SetLevel (volumeLevel);
             GameObject sliderTemp = GameObject.FindWithTag("PauseMenuSlider");
@@ -34,10 +36,22 @@ public class JupiterGameHandler : MonoBehaviour
             }
     }
 
+    private void IndexLevelPositions()
+    {
+        levelPositioningArray = new Vector3[levels.Length];
+        for (int i = 0; i < levels.Length; i++)
+        {
+            LevelInterface curLevel = levels[i].GetComponent<LevelInterface>();
+            levelPositioningArray[i] = curLevel.cameraBounds.position;
+        }
+    }
+
     // Start is called before the first frame update
     void Start (){
             pauseMenuUI.SetActive(false);
             GameisPaused = false;
+
+            IndexLevelPositions();
 
             //DestroyClones();
             InitializeLevel();
@@ -114,9 +128,6 @@ public class JupiterGameHandler : MonoBehaviour
         }
         LevelInterface curLevel = levels[StaticVariables.currentLevelIndex].GetComponent<LevelInterface>();
 
-        ParallaxMotion bgScript = curLevel.BGParallax.GetComponent<ParallaxMotion>();
-        bgScript.cam = Camera.main;
-        bgScript.InitializeCamera(curLevel.cameraBounds);
 
         octoBody = Instantiate(octoBodyPrefab,
                                           curLevel.spawnPoint.transform.position,
@@ -149,6 +160,9 @@ public class JupiterGameHandler : MonoBehaviour
         camController.InitBounds();
         StartCoroutine(camController.CameraSnap());
 
+        ParallaxMotion bgScript = curLevel.BGParallax.GetComponent<ParallaxMotion>();
+        bgScript.cam = Camera.main;
+        bgScript.InitializeCamera(levelPositioningArray[StaticVariables.currentLevelIndex]);
 
         //Instantiate NPC's and set to target
         NPC = new GameObject[curLevel.NPCsSpawnPoint.Length];

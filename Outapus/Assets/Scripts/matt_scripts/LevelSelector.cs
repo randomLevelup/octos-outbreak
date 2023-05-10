@@ -20,7 +20,7 @@ public class LevelSelector : MonoBehaviour
     public void OpenScene(){
         StaticVariables.currentLevelIndex = levelNumber - 1;
         Debug.Log(StaticVariables.currentLevelIndex - 1);
-        SceneManager.LoadScene("week-15-dev");
+        SceneManager.LoadScene("main-level-framework");
 
         // SceneManager.LoadScene(levelNumber);
         //SceneManager.LoadScene("Level " + levelNumber.ToString());
