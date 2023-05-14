@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     public void StartGame(){
         pauseMenuUI.SetActive(false);
         SceneManager.LoadScene("main-level-framework");
+        StaticVariables.currentLevelIndex = 0;
     }
 
     public void QuitGame(){
