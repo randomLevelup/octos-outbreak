@@ -56,6 +56,3 @@ You are Octo, a nimble cephalopod determined to escape an underground research f
 3. Build & Run (WebGL target recommended)  
 
 ---
-
-\
-Distributed under [MIT License](LICENSE). All original assets included under same terms.  
