@@ -2,6 +2,7 @@
  A fluid 2D platformer featuring an octopus escaping a laboratory, powered by procedural animation and custom environmental interactions.  
 
 **Watch Trailer**: [YouTube](https://youtu.be/W_bPWN7P328)
+
 **Play Now**: [WebGL Demo](https://madisonj5.itch.io/octosoutbreak)  
 
 ![Game Preview](screenshot.png)
